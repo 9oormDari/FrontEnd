@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+import Footer from '../components/Footer.tsx';
 
 export default function NotFoundPage() {
   return (
@@ -8,6 +9,7 @@ export default function NotFoundPage() {
       <Suspense fallback={'loading...'}>
         <Outlet />
       </Suspense>
+      <Footer />
     </div>
   );
 }
