@@ -1,13 +1,16 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+import Header from '../components/Header/Header.tsx';
+import Footer from '../components/Footer/Footer.tsx';
 
 export default function NotFoundPage() {
-  return (
-    <div>
-      <h1>페이지에 공통적으로 적용되는 레이아웃입니다.</h1>
-      <Suspense fallback={'loading...'}>
-        <Outlet />
-      </Suspense>
-    </div>
-  );
+    return (
+        <div>
+            <Header />
+            <Suspense fallback={'loading...'}>
+                <Outlet />
+            </Suspense>
+            <Footer />
+        </div>
+    );
 }

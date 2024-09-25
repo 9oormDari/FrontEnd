@@ -1,7 +1,11 @@
+import AdditionalIntroSection from '../components/Mainpage/AdditionalIntroSection.tsx';
+import ImageIntroSection from '../components/Mainpage/ImageIntroSection.tsx';
+
 export default function Index() {
-  return (
-    <div>
-      <h1>메인 페이지입니다.</h1>
-    </div>
-  );
+    return (
+        <div>
+            <ImageIntroSection />
+            <AdditionalIntroSection />
+        </div>
+    );
 }
