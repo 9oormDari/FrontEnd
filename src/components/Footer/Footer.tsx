@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
 import LogoBox from '../LogoBox.tsx';
+import { useLocation } from 'react-router-dom';
 
 export default function Footer() {
   const [backgroundColor, setBackgroundColor] = useState("bg-[#47484A]");
   const location = useLocation();
-  
+
   // location.pathname이 변경될 때마다 실행하는 useEffect
   useEffect(() => {
     if (location.pathname === "/mypage") {
@@ -16,7 +17,7 @@ export default function Footer() {
   }, [location.pathname]);
 
   return (
-    <footer className={`${backgroundColor} h-[180px] flex items-center justify-between px-20`}>
+    <footer className={`${backgroundColor} h-[180px] flex items-center justify-between px-20 fixed bottom-0 left-0 w-full`}>
       {/* 로고 영역 */}
       <LogoBox />
       {/* 역할 및 이름 리스트 영역 */}
