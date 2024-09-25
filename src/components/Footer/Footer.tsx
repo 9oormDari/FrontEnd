@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import LogoBox from '../LogoBox.tsx';
 
 export default function Footer() {
   const [backgroundColor, setBackgroundColor] = useState("bg-[#47484A]");
@@ -15,7 +16,9 @@ export default function Footer() {
   }, [location.pathname]);
 
   return (
-    <footer className={`${backgroundColor} h-[180px] flex items-center justify-center px-10`}>
+    <footer className={`${backgroundColor} h-[180px] flex items-center justify-between px-20`}>
+      {/* 로고 영역 */}
+      <LogoBox />
       {/* 역할 및 이름 리스트 영역 */}
       <div className="flex flex-wrap text-white text-sm justify-center space-x-16">
         
