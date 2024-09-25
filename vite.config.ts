@@ -1,40 +1,16 @@
-import { defineConfig } from "vite";
-import { resolve } from "path";
-import react from "@vitejs/plugin-react";
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react-swc'
 import reactRouterPlugin from 'vite-plugin-next-react-router';
 
-export default defineConfig((configEnv) => {
-  const isDevelopment = configEnv.mode === "development";
-
-  return {
-    plugins: [
-      react(),
-      reactRouterPlugin({
-        pageDir: 'src/pages',
-        extensions: ['js', 'jsx', 'ts', 'tsx'],
-      }),
-    ],
-    server: {
-      port: 3000,
-    },
-    test: {
-      globals: true,
-      environment: "happy-dom",
-      setupFiles: "./src/infrastructure/tests.setup.ts",
-    },
-    resolve: {
-      alias: {
-        app: resolve(__dirname, "src", "app"),
-        components: resolve(__dirname, "src", "components"),
-        hooks: resolve(__dirname, "src", "hooks"),
-      },
-    },
-    css: {
-      modules: {
-        generateScopedName: isDevelopment
-          ? "[name]__[local]__[hash:base64:5]"
-          : "[hash:base64:5]",
-      },
-    },
-  };
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    react(), 
+    reactRouterPlugin({
+      pageDir: 'src/pages',
+      extensions: ['js', 'jsx', 'ts', 'tsx'],
+      // like '_app' in Next.js, `_document` is not supported since all rendering is done in client side
+      layout: '_layout',
+    }),
+  ],
 });
