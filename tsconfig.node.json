@@ -14,8 +14,8 @@
 
         /* Linting */
         "strict": true,
-        "noUnusedLocals": false,        // 잠시 false로 변잠
-        "noUnusedParameters": false,     // 잠시 false로 변시
+        "noUnusedLocals": false, // 잠시 false로 변잠
+        "noUnusedParameters": false, // 잠시 false로 변시
         "noFallthroughCasesInSwitch": true
     },
     "include": ["vite.config.ts"]
