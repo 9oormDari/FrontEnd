@@ -4,7 +4,7 @@ export default function Login() {
     const navigate = useNavigate();
 
     return (
-        <div className="flex items-center justify-center min-h-[500px] py-[50px]">
+        <div className="flex items-center justify-center min-h-[500px] pt-[100px]">
             <div className="w-full max-w-xs flex flex-col items-center gap-[50px]">
                 {/* 로그인 텍스트 영역 */}
                 <div className="text-center">
@@ -14,12 +14,12 @@ export default function Login() {
                 {/* 아이디 및 비밀번호 입력 필드 영역 */}
                 <div className="flex flex-col items-center gap-[10px]">
                     <input
-                        className="w-[500px] h-[70px] px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-[500px] h-[70px] px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#E9EBF8]"
                         type="text"
                         placeholder="아이디"
                     />
                     <input
-                        className="w-[500px] h-[70px] px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-[500px] h-[70px] px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#E9EBF8]"
                         type="password"
                         placeholder="비밀번호"
                     />
@@ -27,11 +27,11 @@ export default function Login() {
 
                 {/* 로그인 및 회원가입 버튼 영역 */}
                 <div className="flex flex-col items-center gap-[10px]">
-                    <button className="w-[500px] h-[70px] bg-black text-white font-bold rounded hover:bg-black focus:outline-none focus:ring-2 focus:ring-black">
+                    <button className="w-[500px] h-[70px] bg-[#5A82F1] text-white font-bold rounded hover:bg-[#4A72D1] focus:outline-none focus:ring-2 focus:ring-[#5A82F1]">
                         로그인
                     </button>
                     <button
-                        className="w-[500px] h-[70px] bg-black text-white font-bold rounded hover:bg-black focus:outline-none focus:ring-2 focus:ring-black"
+                        className="w-[500px] h-[70px] bg-[#575757] text-white font-bold rounded hover:bg-[#474747] focus:outline-none focus:ring-2 focus:ring-[#575757]"
                         onClick={() => navigate('/register')}
                     >
                         회원가입
