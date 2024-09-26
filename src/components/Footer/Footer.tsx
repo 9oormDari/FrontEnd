@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-
-import LogoBox from '../LogoBox.tsx';
 import { useLocation } from 'react-router-dom';
 
 export default function Footer() {
@@ -21,7 +19,8 @@ export default function Footer() {
             className={`${backgroundColor} h-[150px] flex items-center justify-between px-20`}
         >
             {/* 로고 영역 */}
-            <LogoBox />
+            <img src='/logo_white.svg' alt='logo_white' className='w-[216px] h-[80px]' />
+
             {/* 역할 및 이름 리스트 영역 */}
             <div className="flex flex-wrap text-white text-sm justify-center space-x-16">
                 {/* 왼쪽 그룹 (기획 + 디자인) */}
