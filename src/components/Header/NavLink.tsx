@@ -14,7 +14,7 @@ export default function NavLink({ href, label }: NavLinkProps) {
         <a
             href={href}
             className={cn(
-                'text-2xl transition p-4',
+                'text-base md:text-2xl transition md:p-4',
                 `${isActive ? 'text-black font-bold' : 'text-gray-400 hover:text-gray-600'}`
             )}
         >
