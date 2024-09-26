@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import CalHeatmap from 'cal-heatmap';
 import 'cal-heatmap/cal-heatmap.css';
 import Tooltip from 'cal-heatmap/plugins/Tooltip';
@@ -19,11 +19,31 @@ interface CalHeatmapDisplayProps {
 }
 
 const CalHeatmapDisplay: React.FC<CalHeatmapDisplayProps> = ({ data }) => {
+    const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 768);
+    const [cellSize, setCellSize] = useState<number>(window.innerWidth < 768 ? 37 : 50);
+
+    // 창 크기 변경 시 isMobile과 cellSize 업데이트
+    useEffect(() => {
+        const handleResize = () => {
+            const mobile = window.innerWidth < 768;
+            setIsMobile(mobile);
+            setCellSize(mobile ? 37 : 50);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        // 초기 실행
+        handleResize();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     useEffect(() => {
         const thisMonthAndDate = new Date().toISOString().slice(0, 10);
         const cal = new CalHeatmap();
 
-        //console.log(data);
         cal.paint(
             {
                 data: {
@@ -31,7 +51,6 @@ const CalHeatmapDisplay: React.FC<CalHeatmapDisplayProps> = ({ data }) => {
                     type: 'json',
                     x: 'date',
                     y: 'achieved',
-                    // groupY: 'min',
                 },
                 verticalOrientation: true,
                 range: 1,
@@ -56,8 +75,8 @@ const CalHeatmapDisplay: React.FC<CalHeatmapDisplayProps> = ({ data }) => {
                 subDomain: {
                     type: 'xDay',
                     radius: 100,
-                    width: 50,
-                    height: 50,
+                    width: cellSize,
+                    height: cellSize,
                     label: 'D',
                 },
             },
@@ -66,8 +85,7 @@ const CalHeatmapDisplay: React.FC<CalHeatmapDisplayProps> = ({ data }) => {
                     Tooltip,
                     {
                         text: function (date: Date, value: number) {
-                            const formattedDate =
-                                dayjs(date).format('MM[월] DD[일]');
+                            const formattedDate = dayjs(date).format('MM[월] DD[일]');
                             return (
                                 formattedDate +
                                 ' ' +
@@ -84,24 +102,25 @@ const CalHeatmapDisplay: React.FC<CalHeatmapDisplayProps> = ({ data }) => {
         return () => {
             cal.destroy();
         };
-    }, [data]); // data가 변경될 때마다 업데이트
+    }, [data, cellSize]); // data와 cellSize가 변경될 때마다 업데이트
 
     return (
-        <div className='p-10'>
+        <div className='p-4 sm:p-10'>
             {/* 요일 표시 */}
-            <div className='flex justify-between'>
-                {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
-                <span
-                key={day}
-                className={'w-[50px] flex justify-center font-bold'}
-                >
-                    {day}
-                </span>
-            ))}
+            <div className='flex justify-between mb-4'>
+                {['일', '월', '화', '수', '목', '금', '토'].map((day) => (
+                    <span
+                        key={day}
+                        className='w-[50px] sm:w-[50px] flex justify-center font-bold'
+                    >
+                        {day}
+                    </span>
+                ))}
             </div>
+            {/* 캘린더 */}
             <div id="ex-1" className="flex justify-center"></div>
         </div>
-    );;
+    );
 };
 
 export default CalHeatmapDisplay;
