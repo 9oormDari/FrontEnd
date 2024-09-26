@@ -1,23 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-
 export default function Footer() {
-    const [backgroundColor, setBackgroundColor] = useState('bg-[#47484A]');
-    const location = useLocation();
-
-    // location.pathname이 변경될 때마다 실행하는 useEffect
-    useEffect(() => {
-        if (location.pathname === '/mypage') {
-            setBackgroundColor('bg-[#410C0C]');
-        } else {
-            setBackgroundColor('bg-[#47484A]');
-        }
-    }, [location.pathname]);
-
     return (
-        <footer
-            className={`${backgroundColor} h-[150px] flex items-center justify-between px-20`}
-        >
+        <footer className="bg-[#47484A] h-[150px] flex items-center justify-between px-20">
             {/* 로고 영역 */}
             <img
                 src="/logo_white.svg"
