@@ -24,8 +24,8 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.AUTO_ACTIONS }}
         with:
           source-directory: 'output'
-          destination-github-username: [karpitony] 
-          destination-repository-name: [9oormDari-FrontEnd-Deploy]
+          destination-github-username: 'karpitony'
+          destination-repository-name: '9oormDari-FrontEnd-Deploy'
           user-email: ${{ secrets.EMAIL }}
           commit-message: ${{ github.event.commits[0].message }}
           target-branch: main
