@@ -2,7 +2,7 @@ import NavLink from './NavLink.tsx';
 
 export default function Header() {
     return (
-        <header className="h-[150px] bg-white flex items-center justify-between px-20">
+        <header className="h-[150px] bg-white flex items-center justify-between px-20 border-b-2 border-[#DBDBDB]">
             {/* 로고 영역 */}
             <img
                 src="/logo_blue.svg"
