@@ -2,7 +2,7 @@ import HeatmapComponent from "../../Cal-Heatmap/HeatmapComponent";
 
 const MaintenanceGoals: React.FC = () => {
     return (
-        <div>
+        <div className="bg-gray-200 rounded-lg">
             <HeatmapComponent /> 
         </div>
     );

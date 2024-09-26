@@ -23,7 +23,7 @@ const CalHeatmapDisplay: React.FC<CalHeatmapDisplayProps> = ({ data }) => {
         const thisMonthAndDate = new Date().toISOString().slice(0, 10);
         const cal = new CalHeatmap();
 
-        console.log(data);
+        //console.log(data);
         cal.paint(
             {
                 data: {
@@ -36,18 +36,22 @@ const CalHeatmapDisplay: React.FC<CalHeatmapDisplayProps> = ({ data }) => {
                 verticalOrientation: true,
                 range: 1,
                 itemSelector: '#ex-1',
-                date: { start: new Date(thisMonthAndDate) },
+                date: { 
+                    start: new Date(thisMonthAndDate),
+                    locale: 'ko',
+                    timezone: 'Asia/Seoul' 
+                },
                 scale: {
                     color: {
                         type: 'diverging',
-                        scheme: 'PRGn',
-                        domain: [0, 6],
+                        scheme: 'blues',
+                        domain: [0, 8],
                     },
                 },
                 domain: {
                     type: 'month',
                     padding: [10, 10, 10, 10],
-                    label: { position: 'top' },
+                    label: { text: null },
                 },
                 subDomain: {
                     type: 'xDay',
@@ -77,13 +81,27 @@ const CalHeatmapDisplay: React.FC<CalHeatmapDisplayProps> = ({ data }) => {
             ]
         );
 
-        // cleanup 함수로 CalHeatmap 인스턴스 제거 (옵션)
         return () => {
             cal.destroy();
         };
     }, [data]); // data가 변경될 때마다 업데이트
 
-    return <div id="ex-1" className="margin-bottom--md"></div>;
+    return (
+        <div className='p-10'>
+            {/* 요일 표시 */}
+            <div className='flex justify-between'>
+                {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
+                <span
+                key={day}
+                className={'w-[50px] flex justify-center font-bold'}
+                >
+                    {day}
+                </span>
+            ))}
+            </div>
+            <div id="ex-1" className="flex justify-center"></div>
+        </div>
+    );;
 };
 
 export default CalHeatmapDisplay;
