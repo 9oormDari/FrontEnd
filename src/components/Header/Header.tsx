@@ -3,7 +3,7 @@ import LogoBox from '../LogoBox.tsx';
 
 export default function Header() {
     return (
-        <header className="h-[180px] bg-white flex items-center justify-between px-20">
+        <header className="h-[150px] bg-white flex items-center justify-between px-20">
             {/* 로고 영역 */}
             <LogoBox />
 

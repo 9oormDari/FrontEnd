@@ -18,7 +18,7 @@ export default function Footer() {
 
     return (
         <footer
-            className={`${backgroundColor} h-[180px] flex items-center justify-between px-20`}
+            className={`${backgroundColor} h-[150px] flex items-center justify-between px-20`}
         >
             {/* 로고 영역 */}
             <LogoBox />
