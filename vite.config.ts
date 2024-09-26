@@ -12,4 +12,9 @@ export default defineConfig({
             layout: '_layout',
         }),
     ],
+    server: {
+        port: 5174,
+        host: true,
+        strictPort: false,
+    },
 });
