@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
+import cn from '../../lib/cn.ts';
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -56,7 +57,10 @@ export default function Goals() {
                         <h2 className="text-2xl font-bold mb-4">목표 설정</h2>
                         <p>목표를 설정해주세요.</p>
                         <input
-                            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className={cn(
+                                "w-full px-4 py-2 border border-gray-300 rounded", 
+                                "focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            )}
                             type="text"
                             placeholder="새 목표 입력"
                         />
