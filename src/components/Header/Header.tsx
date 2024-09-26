@@ -4,8 +4,12 @@ export default function Header() {
     return (
         <header className="h-[150px] bg-white flex items-center justify-between px-20">
             {/* 로고 영역 */}
-            <img src='/logo_blue.svg' alt='logo_blue' className='w-[216px] h-[80px]' />
-            
+            <img
+                src="/logo_blue.svg"
+                alt="logo_blue"
+                className="w-[216px] h-[80px]"
+            />
+
             {/* 네비게이션 메뉴 */}
             <nav className="flex items-center space-x-8">
                 <NavLink href="/" label="서비스소개" />
