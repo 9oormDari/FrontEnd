@@ -15,7 +15,7 @@ const GuideCard: React.FC<GuideCardProps> = ({
         <div
             className={cn(
                 'max-w-sm rounded-[20px] overflow-hidden shadow-lg bg-[#E9EBF8] border border-[#7697F4] border-[5px]',
-                'w-[250px] h-[325px] m-4',
+                'w-[250px] h-[335px] m-4',
                 'transform transition-transform duration-300 hover:scale-105'
             )}
         >
