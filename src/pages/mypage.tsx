@@ -20,10 +20,7 @@ export default function MyPage() {
                 'pb-[50px] pt-[50px] gap-[50px]'
             )}
         >
-            {/* 
-                * 로그인 확인 컴포넌트
-                * 삼항연산자 사용했는데 가독성 구린거 같긴 하네요 ㅠ
-            */}
+            {/* 로그인 확인 컴포넌트 */}
             { !isLogin ? <NeedLoginComponents /> : 
             <>
                 <Profile /> 
