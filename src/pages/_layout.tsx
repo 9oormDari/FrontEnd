@@ -7,7 +7,9 @@ import { Suspense } from 'react';
 export default function NotFoundPage() {
     const location = useLocation();
     const hideFooter =
-        location.pathname === '/login' || location.pathname === '/register';
+        location.pathname === '/login' ||
+        location.pathname === '/register' ||
+        location.pathname === '/guide';
 
     return (
         <div>

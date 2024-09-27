@@ -15,7 +15,7 @@ const Item: React.FC<ItemProps> = ({ text, image }) => {
 
     return (
         <div
-            className={cn(
+            className={cn
                 "relative h-[70px] md:h-[300px] w-[300px] p-5",
                 "transform transition-transform",
                 "duration-300 hover:scale-105 rounded-lg bg-[#E8EAF8] shadow-lg"

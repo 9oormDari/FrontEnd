@@ -1,4 +1,4 @@
-import { GiHamburgerMenu } from "react-icons/gi";
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 interface HamburgerMenuProps {
     onClick: () => void;
@@ -7,10 +7,10 @@ interface HamburgerMenuProps {
 
 export default function HamburgerMenu({ onClick, isOpen }: HamburgerMenuProps) {
     return (
-        <button 
-            onClick={onClick} 
+        <button
+            onClick={onClick}
             className="p-2 md:hidden cursor-pointer focus:outline-none"
-            aria-label={isOpen ? "메뉴 닫기" : "메뉴 열기"}
+            aria-label={isOpen ? '메뉴 닫기' : '메뉴 열기'}
             aria-expanded={isOpen}
         >
             <GiHamburgerMenu className="w-6 h-6" />
