@@ -1,8 +1,18 @@
+import { useState, useEffect } from 'react';
+import NeedLoginComponents from '../components/NeedLoginComponents.tsx';
 import Goals from '../components/Mypage/Goals';
 import Profile from '../components/Mypage/Profile';
 import cn from '../lib/cn.ts';
 
 export default function MyPage() {
+    const [isLogin, setIsLogin] = useState(false);
+    
+    useEffect(() => {
+        if (localStorage.getItem('accesstoken')) {
+            setIsLogin(true);
+        }
+    }, []);
+
     return (
         <div
             className={cn(
@@ -10,10 +20,15 @@ export default function MyPage() {
                 'pb-[50px] pt-[50px] gap-[50px]'
             )}
         >
-            {/* 프로필 영역 */}
-            <Profile />
-            {/* 목표 영역 */}
-            <Goals />
+            {/* 
+                * 로그인 확인 컴포넌트
+                * 삼항연산자 사용했는데 가독성 구린거 같긴 하네요 ㅠ
+            */}
+            { !isLogin ? <NeedLoginComponents /> : 
+            <>
+                <Profile /> 
+                <Goals />
+            </>}
         </div>
     );
 }
