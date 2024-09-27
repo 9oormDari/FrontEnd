@@ -20,7 +20,9 @@ interface CalHeatmapDisplayProps {
 
 const CalHeatmapDisplay: React.FC<CalHeatmapDisplayProps> = ({ data }) => {
     const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 768);
-    const [cellSize, setCellSize] = useState<number>(window.innerWidth < 768 ? 37 : 50);
+    const [cellSize, setCellSize] = useState<number>(
+        window.innerWidth < 768 ? 37 : 50
+    );
 
     // 창 크기 변경 시 isMobile과 cellSize 업데이트
     useEffect(() => {
@@ -55,10 +57,10 @@ const CalHeatmapDisplay: React.FC<CalHeatmapDisplayProps> = ({ data }) => {
                 verticalOrientation: true,
                 range: 1,
                 itemSelector: '#ex-1',
-                date: { 
+                date: {
                     start: new Date(thisMonthAndDate),
                     locale: 'ko',
-                    timezone: 'Asia/Seoul' 
+                    timezone: 'Asia/Seoul',
                 },
                 scale: {
                     color: {
@@ -85,7 +87,8 @@ const CalHeatmapDisplay: React.FC<CalHeatmapDisplayProps> = ({ data }) => {
                     Tooltip,
                     {
                         text: function (date: Date, value: number) {
-                            const formattedDate = dayjs(date).format('MM[월] DD[일]');
+                            const formattedDate =
+                                dayjs(date).format('MM[월] DD[일]');
                             return (
                                 formattedDate +
                                 ' ' +
@@ -105,13 +108,13 @@ const CalHeatmapDisplay: React.FC<CalHeatmapDisplayProps> = ({ data }) => {
     }, [data, cellSize]); // data와 cellSize가 변경될 때마다 업데이트
 
     return (
-        <div className='p-4 sm:p-10'>
+        <div className="p-4 sm:p-10">
             {/* 요일 표시 */}
-            <div className='flex justify-between mb-4'>
+            <div className="flex justify-between mb-4">
                 {['일', '월', '화', '수', '목', '금', '토'].map((day) => (
                     <span
                         key={day}
-                        className='w-[50px] sm:w-[50px] flex justify-center font-bold'
+                        className="w-[50px] sm:w-[50px] flex justify-center font-bold"
                     >
                         {day}
                     </span>

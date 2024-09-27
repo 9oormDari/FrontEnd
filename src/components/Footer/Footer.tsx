@@ -2,9 +2,10 @@ import cn from '../../lib/cn';
 
 export default function Footer() {
     return (
-        <footer className={cn(
-            "bg-[#47484A] py-5 md:py-8 flex flex-col md:flex-row items-center",
-            "justify-between px-5 md:px-20"
+        <footer
+            className={cn(
+                'bg-[#47484A] py-5 md:py-8 flex flex-col md:flex-row items-center',
+                'justify-between px-5 md:px-20'
             )}
         >
             {/* 로고 영역 */}

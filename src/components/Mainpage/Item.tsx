@@ -9,8 +9,8 @@ const Item = ({ text, backgroundImage }: ItemProps) => {
     return (
         <div
             className={cn(
-                "relative h-[300px] flex items-end p-4 transform transition-transform",
-                "duration-300 hover:scale-105 rounded-lg"
+                'relative h-[300px] flex items-end p-4 transform transition-transform',
+                'duration-300 hover:scale-105 rounded-lg'
             )}
             style={{
                 backgroundImage: `url(${backgroundImage})`,
