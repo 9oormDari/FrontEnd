@@ -5,19 +5,10 @@ import ColorCloud from '../../assets/GoalPage/ColorCloud.svg';
 import Rainbow1 from '../../assets/GoalPage/Rainbow1.svg';
 import Rainbow2 from '../../assets/GoalPage/Rainbow2.svg';
 import CloudComponent from './GoormScreen/CloudComponent';
-import RainbowComponent from './GoormScreen/RainbowComponent';
 
 interface Cloud {
     cloudType: string;
     colStart: number;
-    rowStart: number;
-    hidden: boolean;
-}
-
-interface Rainbow {
-    src: string;
-    colStart: number;
-    colSpan: number;
     rowStart: number;
     hidden: boolean;
 }
@@ -52,15 +43,6 @@ export default function GoormScreen() {
             hidden: stage < 4 
         },
     ];
-    const rainbows: Rainbow[] = [
-        // 첫 번째 구름과 두 번째 구름 사이
-        { src: Rainbow1, colStart: 1, colSpan: 2, rowStart: 1, hidden: stage < 2 }, 
-        // 두 번째 구름과 세 번째 구름 사이
-        { src: Rainbow2, colStart: 2, colSpan: 2, rowStart: 2, hidden: stage < 3 }, 
-        // 세 번째 구름과 네 번째 구름 사이
-        { src: Rainbow1, colStart: 3, colSpan: 2, rowStart: 1, hidden: stage < 4 }, 
-    ];
-
 
     // 임시로 집어넣은 구름 단계 증가 함수
     const increaseStage = () => {
@@ -77,7 +59,7 @@ export default function GoormScreen() {
             className={cn(
                 "flex flex-col items-center justify-center w-full",
                 "relative bg-gradient-to-b from-[#5A82F1] to-[#DAE4FF]",
-                "p-2 md:p-10 h-[30vh] md:h-[70vh]"
+                "p-2 md:p-10 h-[30vh] md:h-[60vh]"
             )}
         >
             {/* 단계 조절 버튼 */}
