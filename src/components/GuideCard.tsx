@@ -15,7 +15,7 @@ const GuideCard: React.FC<GuideCardProps> = ({
         <div
             className={cn(
                 'max-w-sm rounded-[20px] overflow-hidden shadow-lg bg-[#E9EBF8] border border-[#7697F4] border-[5px]',
-                'w-[250px] h-[335px] m-4',
+                'w-[160px] h-[230px] lg:w-[250px] sm:h-[335px] m-4',
                 'transform transition-transform duration-300 hover:scale-105'
             )}
         >
@@ -34,7 +34,7 @@ const GuideCard: React.FC<GuideCardProps> = ({
             </div>
             <div className="bg-blue-100 text-center py-4 rounded-b-[15px]">
                 <p
-                    className="text-[22px] text-[#575757] font-bold"
+                    className="text-[22px] text-[#575757] font-mid"
                     dangerouslySetInnerHTML={{ __html: footerText }}
                 />
             </div>

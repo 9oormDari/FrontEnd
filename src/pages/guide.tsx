@@ -12,12 +12,19 @@ export default function Guide() {
                 'min-h-[500px] flex flex-col justify-center items-center'
             )}
         >
-            <h1 className="text-4xl font-bold p-5 pt-[100px]">
-                구름다리 어떻게 이용하나요?
-            </h1>
+            <div className="w-full flex justify-start lg:justify-center">
+                <h1 className="text-4xl font-bold p-5 pt-[50px] lg:pt-[100px] text-left lg:text-center">
+                    <span className="block lg:hidden">
+                        구름다리 어떻게 <br /> 이용하나요?
+                    </span>
+                    <span className="hidden lg:block">
+                        구름다리 어떻게 이용하나요?
+                    </span>
+                </h1>
+            </div>
             <div
                 className={cn(
-                    'flex flex-wrap items-center justify-center pt-[100px]'
+                    'grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center justify-center pt-[0px] lg:pt-[50px]'
                 )}
             >
                 <GuideCard
