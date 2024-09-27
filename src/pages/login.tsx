@@ -24,14 +24,16 @@ export default function Login() {
                 <div className={cn('flex flex-col items-center gap-[10px]')}>
                     <input
                         className={cn(
-                            'w-[500px] h-[70px] px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#E9EBF8]'
+                            'w-[500px] h-[70px] px-4 py-2 border border-gray-300',
+                            'rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#E9EBF8]'
                         )}
                         type="text"
                         placeholder="아이디"
                     />
                     <input
                         className={cn(
-                            'w-[500px] h-[70px] px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#E9EBF8]'
+                            'w-[500px] h-[70px] px-4 py-2 border border-gray-300 rounded',
+                            'focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#E9EBF8]'
                         )}
                         type="password"
                         placeholder="비밀번호"
@@ -42,14 +44,16 @@ export default function Login() {
                 <div className={cn('flex flex-col items-center gap-[10px]')}>
                     <button
                         className={cn(
-                            'w-[500px] h-[70px] bg-[#5A82F1] text-white font-bold rounded hover:bg-[#4A72D1] focus:outline-none focus:ring-2 focus:ring-[#5A82F1]'
+                            'w-[500px] h-[70px] bg-[#5A82F1] text-white font-bold rounded',
+                            'hover:bg-[#4A72D1] focus:outline-none focus:ring-2 focus:ring-[#5A82F1]'
                         )}
                     >
                         로그인
                     </button>
                     <button
                         className={cn(
-                            'w-[500px] h-[70px] bg-[#575757] text-white font-bold rounded hover:bg-[#474747] focus:outline-none focus:ring-2 focus:ring-[#575757]'
+                            'w-[500px] h-[70px] bg-[#575757] text-white font-bold rounded',
+                            'hover:bg-[#474747] focus:outline-none focus:ring-2 focus:ring-[#575757]'
                         )}
                         onClick={() => navigate('/register')}
                     >

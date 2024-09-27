@@ -1,10 +1,14 @@
+import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import cn from '../../lib/cn.ts';
+import MaintenanceGoals from './Goals/MaintenanceGoals';
+import SettingGoals from './Goals/SettingGoals';
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
 }
 
-export default function Goals() {
+const Goals: React.FC = () => {
     const navigate = useNavigate();
     const query = useQuery();
     const sector = query.get('sector') || 'maintenance'; // 기본값으로 maintenance
@@ -40,29 +44,11 @@ export default function Goals() {
 
             {/* sector에 따라 보여줄 컴포넌트 분기 */}
             <div className="p-8">
-                {isMaintenance && (
-                    <div>
-                        <h2 className="text-2xl font-bold mb-4">목표 점검</h2>
-                        <ul className="list-disc pl-5">
-                            <li>하루 10,000보 걷기</li>
-                            <li>주 3회 운동</li>
-                            <li>매일 30분 책 읽기</li>
-                        </ul>
-                    </div>
-                )}
-
-                {isSetting && (
-                    <div>
-                        <h2 className="text-2xl font-bold mb-4">목표 설정</h2>
-                        <p>목표를 설정해주세요.</p>
-                        <input
-                            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            type="text"
-                            placeholder="새 목표 입력"
-                        />
-                    </div>
-                )}
+                {isMaintenance && <MaintenanceGoals />}
+                {isSetting && <SettingGoals />}
             </div>
         </div>
     );
-}
+};
+
+export default Goals;
