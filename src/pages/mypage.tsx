@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NeedLoginComponents from '../components/NeedLoginComponents.tsx';
 import Goals from '../components/Mypage/Goals';
 import Profile from '../components/Mypage/Profile';
@@ -6,6 +6,12 @@ import cn from '../lib/cn.ts';
 
 export default function MyPage() {
     const [isLogin, setIsLogin] = useState(false);
+    
+    useEffect(() => {
+        if (localStorage.getItem('accesstoken')) {
+            setIsLogin(true);
+        }
+    }, []);
 
     return (
         <div
@@ -15,14 +21,14 @@ export default function MyPage() {
             )}
         >
             {/* 
-                * 로그인 필요 컴포넌트 
-                * 로그인 확인 방법을 모르겠어서 일단 임포트 했습니다.
+                * 로그인 확인 컴포넌트
+                * 삼항연산자 사용했는데 가독성 구린거 같긴 하네요 ㅠ
             */}
-            { isLogin ? null : <NeedLoginComponents /> }
-            {/* 프로필 영역 */}
-            <Profile />
-            {/* 목표 영역 */}
-            <Goals />
+            { !isLogin ? <NeedLoginComponents /> : 
+            <>
+                <Profile /> 
+                <Goals />
+            </>}
         </div>
     );
 }
