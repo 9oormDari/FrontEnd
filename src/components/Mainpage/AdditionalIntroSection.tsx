@@ -51,7 +51,7 @@ export default function AdditionalIntroSection() {
                     구름다리의 <br />
                     특징은 무엇일까요?
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div className="place-items-center grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                     {items.map((item, index) => (
                         <Item
                             key={index}
@@ -68,7 +68,7 @@ export default function AdditionalIntroSection() {
                     구름다리 함께라면, <br />
                     무엇이 다른가요?
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div className="place-items-center grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                     {additionalItems.map((item, index) => (
                         <Item
                             key={index}
