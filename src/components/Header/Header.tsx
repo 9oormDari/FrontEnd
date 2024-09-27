@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from 'react';
 import HamburgerMenu from './HamburgerMenu';
 import NavLink from './NavLink';
 import cn from '../../lib/cn';
@@ -8,34 +8,39 @@ export default function Header() {
     const menuRef = useRef<HTMLDivElement>(null);
 
     const toggleMenu = () => {
-        setIsMenuOpen(prev => !prev);
+        setIsMenuOpen((prev) => !prev);
         console.log('햄버거 메뉴 클릭', !isMenuOpen);
-    }
+    };
 
     const handleClickOutside = (event: MouseEvent) => {
-        if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        if (
+            menuRef.current &&
+            !menuRef.current.contains(event.target as Node)
+        ) {
             setIsMenuOpen(false);
         }
-    }
+    };
 
     useEffect(() => {
         if (isMenuOpen) {
-            document.addEventListener("mousedown", handleClickOutside);
+            document.addEventListener('mousedown', handleClickOutside);
         } else {
-            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener('mousedown', handleClickOutside);
         }
 
         return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        }
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
     }, [isMenuOpen]);
 
     return (
-        <header className={cn(
-            "bg-white flex items-center justify-between",
-            "h-[75px] md:h-[150px] p-2 md:px-20", 
-            "border-b-2 border-[#DBDBDB] relative"
-        )}>
+        <header
+            className={cn(
+                'bg-white flex items-center justify-between',
+                'h-[75px] md:h-[150px] p-2 md:px-20',
+                'border-b-2 border-[#DBDBDB] relative'
+            )}
+        >
             {/* 로고 영역 */}
             <img
                 src="/logo_blue.svg"
@@ -60,21 +65,32 @@ export default function Header() {
             )}
 
             {/* 모바일 네비게이션 메뉴 */}
-            <div 
+            <div
                 ref={menuRef}
                 className={cn(
-                    "fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300",
-                    isMenuOpen ? "translate-x-0" : "translate-x-full"
+                    'fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300',
+                    isMenuOpen ? 'translate-x-0' : 'translate-x-full'
                 )}
             >
                 {/* 닫기 버튼 */}
-                <button 
-                    onClick={toggleMenu} 
+                <button
+                    onClick={toggleMenu}
                     className="p-4 focus:outline-none"
                     aria-label="메뉴 닫기"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                        />
                     </svg>
                 </button>
 

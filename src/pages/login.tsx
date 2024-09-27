@@ -44,7 +44,7 @@ export default function Login() {
                 <div className={cn('flex flex-col items-center gap-[10px]')}>
                     <button
                         className={cn(
-                            'w-[500px] h-[70px] bg-[#5A82F1] text-white font-bold rounded', 
+                            'w-[500px] h-[70px] bg-[#5A82F1] text-white font-bold rounded',
                             'hover:bg-[#4A72D1] focus:outline-none focus:ring-2 focus:ring-[#5A82F1]'
                         )}
                     >
@@ -52,7 +52,7 @@ export default function Login() {
                     </button>
                     <button
                         className={cn(
-                            'w-[500px] h-[70px] bg-[#575757] text-white font-bold rounded', 
+                            'w-[500px] h-[70px] bg-[#575757] text-white font-bold rounded',
                             'hover:bg-[#474747] focus:outline-none focus:ring-2 focus:ring-[#575757]'
                         )}
                         onClick={() => navigate('/register')}
