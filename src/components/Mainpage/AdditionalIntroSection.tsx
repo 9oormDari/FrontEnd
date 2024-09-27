@@ -10,8 +10,7 @@ import Trophy from '../../assets/MainPage/Icons/Trophy.svg';
 export default function AdditionalIntroSection() {
     const items = [
         {
-            text:
-            '팀과 함께하는\n 목표 및 루틴 설정',
+            text: '팀과 함께하는\n 목표 및 루틴 설정',
             image: Flag,
         },
         {
@@ -40,9 +39,10 @@ export default function AdditionalIntroSection() {
     ];
 
     return (
-        <section className={cn(
-            "bg-white w-full p-5 md:px-10 py-10 flex items-center",
-            "justify-center flex-col md:px-60 "
+        <section
+            className={cn(
+                'bg-white w-full p-5 md:px-10 py-10 flex items-center',
+                'justify-center flex-col md:px-60 '
             )}
         >
             {/* 첫 번째 박스 그룹 */}
@@ -53,11 +53,7 @@ export default function AdditionalIntroSection() {
                 </h2>
                 <div className="place-items-center grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                     {items.map((item, index) => (
-                        <Item
-                            key={index}
-                            text={item.text}
-                            image={item.image}
-                        />
+                        <Item key={index} text={item.text} image={item.image} />
                     ))}
                 </div>
             </div>
@@ -70,11 +66,7 @@ export default function AdditionalIntroSection() {
                 </h2>
                 <div className="place-items-center grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                     {additionalItems.map((item, index) => (
-                        <Item
-                            key={index}
-                            text={item.text}
-                            image={item.image}
-                        />
+                        <Item key={index} text={item.text} image={item.image} />
                     ))}
                 </div>
             </div>

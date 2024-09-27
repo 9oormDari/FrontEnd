@@ -16,15 +16,16 @@ const Item: React.FC<ItemProps> = ({ text, image }) => {
     return (
         <div
             className={cn(
-                "relative h-[70px] md:h-[300px] w-[300px] p-5",
-                "transform transition-transform",
-                "duration-300 hover:scale-105 rounded-lg bg-[#E8EAF8] shadow-lg"
+                'relative h-[70px] md:h-[300px] w-[300px] p-5',
+                'transform transition-transform',
+                'duration-300 hover:scale-105 rounded-lg bg-[#E8EAF8] shadow-lg'
             )}
         >
             {/* 텍스트를 상단에 고정 */}
-            <div className={cn(
-                "absolute top-2 md:top-5 left-2 md:left-5 bg-opacity-50 text-black",
-                "text-base md:text-2xl text-left font-normal md:font-semibold p-2 rounded-t-lg"
+            <div
+                className={cn(
+                    'absolute top-2 md:top-5 left-2 md:left-5 bg-opacity-50 text-black',
+                    'text-base md:text-2xl text-left font-normal md:font-semibold p-2 rounded-t-lg'
                 )}
             >
                 {formattedText}
@@ -35,9 +36,10 @@ const Item: React.FC<ItemProps> = ({ text, image }) => {
                 src={image}
                 alt={text}
                 className={cn(
-                    "absolute bottom-2 md:bottom-5 right-2 md:right-5",
-                    "object-contain rounded-b-lg",
-                    "h-[50px] w-[50px] md:h-[120px] md:w-[120px]")}
+                    'absolute bottom-2 md:bottom-5 right-2 md:right-5',
+                    'object-contain rounded-b-lg',
+                    'h-[50px] w-[50px] md:h-[120px] md:w-[120px]'
+                )}
             />
         </div>
     );

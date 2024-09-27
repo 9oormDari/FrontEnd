@@ -6,7 +6,7 @@ import MemberList from '../components/Goalpage/MemberList.tsx';
 
 export default function Goal() {
     const [isLogin, setIsLogin] = useState(false);
-    
+
     useEffect(() => {
         if (localStorage.getItem('accesstoken')) {
             setIsLogin(true);
@@ -20,14 +20,17 @@ export default function Goal() {
                 'pb-[50px] gap-[50px] min-h-screen'
             )}
         >
-        {/* 로그인 확인 컴포넌트 */}
-        { !isLogin ? <NeedLoginComponents /> : 
-        <>
-            <div className="flex flex-col items-center justify-center w-full ">
-                <GoormScreen />
-                <MemberList />
-            </div>
-        </>}
+            {/* 로그인 확인 컴포넌트 */}
+            {!isLogin ? (
+                <NeedLoginComponents />
+            ) : (
+                <>
+                    <div className="flex flex-col items-center justify-center w-full ">
+                        <GoormScreen />
+                        <MemberList />
+                    </div>
+                </>
+            )}
         </div>
     );
 }

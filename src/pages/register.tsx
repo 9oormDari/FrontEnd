@@ -1,8 +1,34 @@
+import React, { useState } from 'react';
+
+import { API } from '../lib/api/index.ts';
 import cn from '../lib/cn.ts';
 import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
     const navigate = useNavigate();
+
+    // 입력 필드 상태 관리
+    const [nickname, setNickname] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
+    const handleRegister = async () => {
+        if (password !== confirmPassword) {
+            alert('비밀번호가 일치하지 않습니다.');
+            return;
+        }
+
+        try {
+            // 회원가입 요청
+            await API.User.register(nickname, username, password);
+            alert('회원가입 성공!');
+            navigate('/login'); // 회원가입 후 로그인 페이지로 이동
+        } catch (error) {
+            console.error('회원가입 실패:', error);
+            alert('회원가입에 실패했습니다.');
+        }
+    };
 
     return (
         <div
@@ -29,6 +55,8 @@ export default function Register() {
                         )}
                         type="text"
                         placeholder="닉네임"
+                        value={nickname}
+                        onChange={(e) => setNickname(e.target.value)}
                     />
                     <input
                         className={cn(
@@ -37,6 +65,8 @@ export default function Register() {
                         )}
                         type="text"
                         placeholder="아이디"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                     <input
                         className={cn(
@@ -45,6 +75,8 @@ export default function Register() {
                         )}
                         type="password"
                         placeholder="비밀번호"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                     <input
                         className={cn(
@@ -53,6 +85,8 @@ export default function Register() {
                         )}
                         type="password"
                         placeholder="비밀번호 확인"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                 </div>
 
@@ -63,6 +97,7 @@ export default function Register() {
                             'w-1/2 h-[70px] bg-[#5A82F1] text-white font-bold rounded',
                             'hover:bg-[#4A72D1] focus:outline-none focus:ring-2 focus:ring-[#5A82F1]'
                         )}
+                        onClick={handleRegister}
                     >
                         확인
                     </button>
