@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import NeedLoginComponents from '../components/NeedLoginComponents.tsx';
+
 import GoormScreen from '../components/Goalpage/GoormScreen.tsx';
-import cn from '../lib/cn.ts';
 import MemberList from '../components/Goalpage/MemberList.tsx';
+import NeedLoginComponents from '../components/NeedLoginComponents.tsx';
+import cn from '../lib/cn.ts';
 
 export default function Goal() {
     const [isLogin, setIsLogin] = useState(false);
