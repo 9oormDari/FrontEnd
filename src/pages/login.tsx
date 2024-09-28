@@ -17,12 +17,13 @@ export default function Login() {
             // 로그인 요청
             await API.User.login(username, password);
             alert('로그인 성공!');
-            navigate('/'); // 로그인 성공 시 메인 페이지로 이동
+
+            // 로그인 성공 후 바로 페이지 이동, setIsPending(false)를 호출하지 않음
+            window.location.href = '/'; // 로그인 성공 시 메인 페이지로 이동
         } catch (error) {
             console.error('로그인 실패:', error);
             alert('로그인에 실패했습니다.');
-        } finally {
-            setIsPending(false); // 요청 완료 후 로딩 상태 해제
+            setIsPending(false); // 요청 실패 시에만 로딩 상태 해제
         }
     };
 
