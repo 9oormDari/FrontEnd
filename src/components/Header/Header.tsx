@@ -1,11 +1,25 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
 import HamburgerMenu from './HamburgerMenu';
 import NavLink from './NavLink';
 import cn from '../../lib/cn';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
+    const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 여부 상태 관리
+
+    useEffect(() => {
+        // localStorage에서 accessToken을 확인하여 로그인 여부 설정
+        const token = localStorage.getItem('accessToken');
+        if (token) {
+            setIsLoggedIn(true);
+        } else {
+            setIsLoggedIn(false);
+        }
+    }, []);
 
     const toggleMenu = () => {
         setIsMenuOpen((prev) => !prev);
@@ -56,7 +70,11 @@ export default function Header() {
                 <NavLink href="/" label="서비스소개" />
                 <NavLink href="/guide" label="이용방법" />
                 <NavLink href="/goal" label="목표 점검" />
-                <NavLink href="/mypage" label="마이페이지" />
+                {isLoggedIn ? (
+                    <NavLink href="/mypage" label="마이페이지" />
+                ) : (
+                    <NavLink href="/login" label="로그인/회원가입" />
+                )}
             </nav>
 
             {/* 오버레이 */}
@@ -99,7 +117,11 @@ export default function Header() {
                     <NavLink href="/" label="서비스소개" />
                     <NavLink href="/guide" label="이용방법" />
                     <NavLink href="/goal" label="목표 점검" />
-                    <NavLink href="/mypage" label="마이페이지" />
+                    {isLoggedIn ? (
+                        <NavLink href="/mypage" label="마이페이지" />
+                    ) : (
+                        <NavLink href="/login" label="로그인/회원가입" />
+                    )}
                 </nav>
             </div>
         </header>

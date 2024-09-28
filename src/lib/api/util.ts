@@ -5,11 +5,20 @@ export async function fetchData(args: {
     method: 'POST' | 'PUT' | 'GET' | 'DELETE';
     body?: any;
     isFormData?: boolean;
+    tokenOn?: boolean; // tokenOn 플래그 추가
 }): Promise<any> {
     let headers: Record<string, string> = {};
 
     if (!args.isFormData) {
         headers['Content-Type'] = 'application/json';
+    }
+
+    // tokenOn이 true일 경우, localStorage에서 accessToken을 가져와 헤더에 추가
+    if (args.tokenOn) {
+        const token = localStorage.getItem('accessToken');
+        if (token) {
+            headers['Authorization'] = token;
+        }
     }
 
     try {

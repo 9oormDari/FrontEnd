@@ -13,7 +13,6 @@ interface Cloud {
     hidden: boolean;
 }
 
-
 export default function GoormScreen() {
     const [stage, setStage] = useState<number>(0);
 
@@ -22,25 +21,25 @@ export default function GoormScreen() {
             cloudType: stage === 1 ? ColorCloud : BlueCloud,
             colStart: 1,
             rowStart: 1,
-            hidden: stage === 0
+            hidden: stage === 0,
         },
         {
             cloudType: stage === 2 ? ColorCloud : BlueCloud,
             colStart: 2,
             rowStart: 2,
-            hidden: stage < 2
+            hidden: stage < 2,
         },
         {
             cloudType: stage === 3 ? ColorCloud : BlueCloud,
             colStart: 3,
             rowStart: 1,
-            hidden: stage < 3 
+            hidden: stage < 3,
         },
         {
-            cloudType: stage === 4 ? ColorCloud : BlueCloud, 
+            cloudType: stage === 4 ? ColorCloud : BlueCloud,
             colStart: 4,
             rowStart: 2,
-            hidden: stage < 4 
+            hidden: stage < 4,
         },
     ];
 
@@ -57,9 +56,9 @@ export default function GoormScreen() {
     return (
         <div
             className={cn(
-                "flex flex-col items-center justify-center w-full",
-                "relative bg-gradient-to-b from-[#5A82F1] to-[#DAE4FF]",
-                "p-2 md:p-10 h-[30vh] md:h-[60vh]"
+                'flex flex-col items-center justify-center w-full',
+                'relative bg-gradient-to-b from-[#5A82F1] to-[#DAE4FF]',
+                'p-2 md:p-10 h-[30vh] md:h-[60vh]'
             )}
         >
             {/* 단계 조절 버튼 */}

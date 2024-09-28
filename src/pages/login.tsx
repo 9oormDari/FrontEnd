@@ -1,8 +1,26 @@
+import { API } from '../lib/api';
 import cn from '../lib/cn.ts';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function Login() {
     const navigate = useNavigate();
+
+    // 입력 필드 상태 관리
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = async () => {
+        try {
+            // 로그인 요청
+            await API.User.login(username, password);
+            alert('로그인 성공!');
+            navigate('/'); // 로그인 성공 시 메인 페이지로 이동
+        } catch (error) {
+            console.error('로그인 실패:', error);
+            alert('로그인에 실패했습니다.');
+        }
+    };
 
     return (
         <div
@@ -29,6 +47,8 @@ export default function Login() {
                         )}
                         type="text"
                         placeholder="아이디"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                     <input
                         className={cn(
@@ -37,6 +57,8 @@ export default function Login() {
                         )}
                         type="password"
                         placeholder="비밀번호"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
 
@@ -47,6 +69,7 @@ export default function Login() {
                             'w-[500px] h-[70px] bg-[#5A82F1] text-white font-bold rounded',
                             'hover:bg-[#4A72D1] focus:outline-none focus:ring-2 focus:ring-[#5A82F1]'
                         )}
+                        onClick={handleLogin} // 로그인 버튼 클릭 시 실행
                     >
                         로그인
                     </button>
