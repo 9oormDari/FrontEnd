@@ -70,10 +70,9 @@ export default function Guide() {
             )}
 
             {/* 부모 요소에 flex와 justify-center 추가 */}
-            <div className="mt-24 mb-24 sm:mt-60 sm:mb-40 text-white flex justify-center">
-                <StartButton />{' '}
-                {/* 로그인 상태에 따라 prop 변경 */}
-            </div>
+
+            <div className="mt-24 mb-24 sm:mt-60 sm:mb-40 text-white flex justify-center transfrom transition-transform duration-300 hover:scale-105">
+                <StartButton /> {/* 로그인 상태에 따라 prop 변경 */}
         </div>
     );
 }

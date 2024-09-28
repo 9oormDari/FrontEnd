@@ -23,7 +23,7 @@ export default function ShowImageModal({
 }: ShowImageModalProps) {
     // 백엔드에서 가져온 이미지들을 저장할 상태
     const [images, setImages] = useState<ImageData[]>([]);
-
+    
     // 백엔드에서 이미지 데이터를 가져오는 함수
     useEffect(() => {
         const fetchMemberImages = async () => {
@@ -82,15 +82,15 @@ export default function ShowImageModal({
                 </h1>
                 <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {displayImages.map((image, index) => (
-                        <div 
-                        key={`${image.id}-${index}`}
-                        className="h-32 md:h-48 bg-gray-200 flex justify-center items-center rounded"
+                        <div
+                            key={`${image.id}-${index}`}
+                            className="h-32 md:h-48 bg-gray-200 flex justify-center items-center rounded"
                         >
-                        <img
-                            src={image.url} 
-                            alt={image.alt}
-                            className="w-full h-full object-contain"
-                        />
+                            <img
+                                src={image.url}
+                                alt={image.alt}
+                                className="w-full h-full object-contain"
+                            />
                         </div>
                     ))}
                 </div>

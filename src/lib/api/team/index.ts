@@ -69,4 +69,14 @@ export namespace __Team {
             tokenOn: true, // 인증이 필요한 경우 토큰 포함
         });
     }
+
+    export async function getUserRoutine() {
+        const url = `${BASE_URL}/team/routine-list`;
+
+        return fetchData({
+            url,
+            method: 'GET',
+            tokenOn: true,
+        });
+    }
 }

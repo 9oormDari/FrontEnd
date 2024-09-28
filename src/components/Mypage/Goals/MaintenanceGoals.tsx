@@ -5,6 +5,7 @@ import Calendar from './Calander';
 import DDayCounter from './DDayCounter';
 import Pending from '../../Pending/Loading.tsx'; // Pending 컴포넌트 추가
 import dayjs from 'dayjs';
+import { useNavigate } from 'react-router-dom'; // useNavigate import 추가
 
 const MaintenanceGoals: React.FC = () => {
     const [dDay, setDDay] = useState<number | null>(null);
@@ -15,6 +16,8 @@ const MaintenanceGoals: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const [currentDate, setCurrentDate] = useState<Date>(new Date());
+
+    const navigate = useNavigate(); // useNavigate 훅 사용
 
     useEffect(() => {
         const fetchCalendar = async () => {
@@ -53,12 +56,23 @@ const MaintenanceGoals: React.FC = () => {
         fetchCalendar();
     }, [currentDate]);
 
+    useEffect(() => {
+        if (error) {
+            navigate('?sector=maintenance'); // 에러 발생 시 경로 변경
+        }
+    }, [error, navigate]);
+
     return (
-        <div className="bg-gray-200 rounded-lg p-4">
+        <div className="bg-gray-200 rounded-lg p-4 sm:px-20">
             {loading ? (
                 <Pending height={600} backgroundColor="D9D9D9" /> // 로딩 중일 때만 Pending 컴포넌트를 표시
             ) : error ? (
-                <div className="text-center text-red-500">{error}</div> // 에러 메시지 표시
+                <div
+                    className="flex items-center justify-center text-black"
+                    style={{ height: '500px', padding: '0 20px' }}
+                >
+                    Empty Data
+                </div> // 에러 메시지 대신 Empty Data 표시
             ) : (
                 <>
                     {/* 하위 컴포넌트에 필요한 데이터 전달 */}

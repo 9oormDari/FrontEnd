@@ -90,4 +90,44 @@ export namespace __User {
             tokenOn: true,
         });
     }
+    export async function currentStep() {
+        const url = `${BASE_URL}/user/current-step`;
+
+        return fetchData({
+            url,
+            method: 'GET',
+            tokenOn: true,
+        });
+    }
+    export async function uploadRoutine(
+        routineIndex: string,
+        routineName: string,
+        file: File
+    ) {
+        const url = `${BASE_URL}/routine/upload`;
+
+        // FormData 객체 생성
+        const formData = new FormData();
+        formData.append('routineIndex', routineIndex.toString());
+        formData.append('routineName', routineName);
+        formData.append('file', file);
+        
+        return fetchData({
+            url,
+            method: 'POST',
+            body: formData,
+            tokenOn: true,
+            isFormData: true,
+        });
+    }
+
+    export async function getUserRoutine() {
+        const url = `${BASE_URL}/team/routine-list`;
+
+        return fetchData({
+            url,
+            method: 'GET',
+            tokenOn: true,
+        });
+    }
 }
