@@ -14,6 +14,7 @@ export default function Register() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [isPending, setIsPending] = useState(true); // 로딩 상태 관리 (처음엔 true)
+    const [passwordMatch, setPasswordMatch] = useState(true); // 비밀번호 일치 여부 상태
 
     // 컴포넌트가 마운트될 때 0.2초 동안 Pending 표시
     useEffect(() => {
@@ -50,6 +51,11 @@ export default function Register() {
             navigate(-1); // 0.2초 대기 후 이전 페이지로 이동
         }, 200);
     };
+
+    // 비밀번호 확인 필드에서 입력할 때마다 일치 여부 확인
+    useEffect(() => {
+        setPasswordMatch(password === confirmPassword);
+    }, [password, confirmPassword]);
 
     return (
         <div>
@@ -109,8 +115,15 @@ export default function Register() {
                             />
                             <input
                                 className={cn(
-                                    'w-[300px] md:w-[500px] h-[70px] px-4 py-2 border border-gray-300 rounded',
-                                    'focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#E9EBF8]'
+                                    `w-[300px] md:w-[500px] h-[70px] px-4 py-2 border-2 ${
+                                        passwordMatch
+                                            ? 'border-gray-300'
+                                            : 'border-red-500'
+                                    } rounded focus:outline-none focus:ring-2 ${
+                                        passwordMatch
+                                            ? 'focus:ring-blue-500'
+                                            : 'focus:ring-red-500'
+                                    } bg-[#E9EBF8]`
                                 )}
                                 type="password"
                                 placeholder="비밀번호 확인"
@@ -119,6 +132,11 @@ export default function Register() {
                                     setConfirmPassword(e.target.value)
                                 }
                             />
+                            {!passwordMatch && (
+                                <span className="text-red-500 text-sm">
+                                    비밀번호가 일치하지 않습니다.
+                                </span>
+                            )}
                         </div>
 
                         {/* 확인 및 취소 버튼 영역 */}
@@ -133,6 +151,7 @@ export default function Register() {
                                     'hover:bg-[#4A72D1] focus:outline-none focus:ring-2 focus:ring-[#5A82F1]'
                                 )}
                                 onClick={handleRegister}
+                                disabled={!passwordMatch} // 비밀번호가 일치하지 않으면 버튼 비활성화
                             >
                                 확인
                             </button>
