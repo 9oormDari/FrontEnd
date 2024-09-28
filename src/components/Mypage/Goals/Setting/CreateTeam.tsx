@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { API } from '../../../../lib/api'; // __Team 네임스페이스 경로에 맞게 import
 import InviteCodeField from './InviteCodeField'; // InviteCodeField 컴포넌트를 임포트합니다.
@@ -14,6 +14,7 @@ const CreateTeam: React.FC = () => {
     const [routine3, setRoutine3] = useState('');
     const [routine4, setRoutine4] = useState('');
     const [showInviteCode, setShowInviteCode] = useState(false);
+    const [isFormValid, setIsFormValid] = useState(false);
 
     const handleInputChange =
         (setter: React.Dispatch<React.SetStateAction<string>>) =>
@@ -53,6 +54,33 @@ const CreateTeam: React.FC = () => {
         }
     };
 
+    useEffect(() => {
+        // 모든 필드가 채워졌는지 확인
+        if (
+            teamName &&
+            goal &&
+            durationMonths &&
+            durationDays &&
+            routine1 &&
+            routine2 &&
+            routine3 &&
+            routine4
+        ) {
+            setIsFormValid(true);
+        } else {
+            setIsFormValid(false);
+        }
+    }, [
+        teamName,
+        goal,
+        durationMonths,
+        durationDays,
+        routine1,
+        routine2,
+        routine3,
+        routine4,
+    ]);
+
     return (
         <div className="w-full">
             <div>
@@ -60,7 +88,7 @@ const CreateTeam: React.FC = () => {
                     <InviteCodeField />
                 ) : (
                     <>
-                        <div className="bg-[#E9EBF8] rounded-lg shadow-lg w-full  drop-shadow-md">
+                        <div className="bg-[#E9EBF8] rounded-lg shadow-lg w-full drop-shadow-md">
                             <div className="bg-[#5A82F1] h-[50px] rounded-t-lg flex items-center justify-center">
                                 <h2 className="text-[20px] font-bold text-center text-white">
                                     함께할 팀을 만들어보세요
@@ -158,10 +186,8 @@ const CreateTeam: React.FC = () => {
 
                         <button
                             onClick={handleNextClick}
-                            className={cn(
-                                'w-full py-3 bg-[#5A82F1] text-white font-bold rounded-lg mt-4',
-                                'transition-transform duration-300 hover:scale-105'
-                            )}
+                            className={`w-full py-3 bg-[#5A82F1] text-white font-bold rounded-lg mt-4 transition-transform duration-300 ${!isFormValid ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            disabled={!isFormValid}
                         >
                             다음
                         </button>
