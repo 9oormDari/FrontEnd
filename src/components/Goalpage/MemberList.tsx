@@ -3,6 +3,7 @@ import { API } from '../../lib/api/index.ts';
 import { useState, useEffect } from 'react';
 import cn from '../../lib/cn';
 import UploadModal from './MemberList/UploadModal.tsx';
+import ShowImageModal from './MemberList/ShowImageModal.tsx';
 
 interface Member {
     id: string;
@@ -11,6 +12,7 @@ interface Member {
 
 export default function MemberList() {
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isSeeMyImageModalVisible, setIsSeeMyImageModalVisible] = useState(false);
     const [members, setMembers] = useState<Member[]>([
         { id: '1', username: '김' },
         { id: '2', username: '박' },
@@ -18,6 +20,22 @@ export default function MemberList() {
     ]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+    const [myId, setMyId] = useState<string>('');
+    const [myName, setMyName] = useState<string>('');
+    
+    useEffect(() => {
+        const fetchMyData = async () => {
+            try {
+                const response = await API.User.getMyInfo();
+                    setMyId(response.username);
+                    setMyName(response.nickname);
+                    console.log(myId, myName);    
+            } catch (error) {
+                console.error('내 정보를 불러오는 중 오류가 발생했습니다:', error);
+            }
+        };
+        fetchMyData();
+    }, []);
 
     useEffect(() => {
         const fetchMemberList = async () => {
@@ -46,6 +64,14 @@ export default function MemberList() {
     const closeModal = () => {
         setIsModalVisible(false);
     };
+
+    const openSeeMyImageModal = () => {
+        setIsSeeMyImageModalVisible(true);
+    }
+
+    const closeSeeMyImageModal = () => {
+        setIsSeeMyImageModalVisible(false);
+    }
 
     return (
         <>
@@ -81,9 +107,17 @@ export default function MemberList() {
                 "w-64 md:w-96 h-12 md:h-16 bg-[#575757] text-white rounded-lg hover:bg-slate-700",
                 "transition text-sm md:text-xl font-semibold mt-3 "
                 )}
+                onClick={openSeeMyImageModal}
             >
                 나의 인증 보러가기
             </button>
+            {isSeeMyImageModalVisible && myId && myName && (
+                <ShowImageModal 
+                    memberId={myId}
+                    memberName={myName}
+                    onClose={closeSeeMyImageModal}
+                />
+            )}
         </> 
     );
 }
