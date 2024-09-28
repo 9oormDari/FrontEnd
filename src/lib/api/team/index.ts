@@ -45,4 +45,16 @@ export namespace __Team {
             tokenOn: true, // 인증이 필요한 경우 토큰 포함
         });
     }
+
+    // 팀 초대 함수
+    export async function inviteTeam(email: string) {
+        const url = `${BASE_URL}/team/email/${email}`;
+
+        // 서버에 팀 초대 요청
+        return fetchData({
+            url,
+            method: 'POST',
+            tokenOn: true, // 인증이 필요한 경우 토큰 포함
+        });
+    }
 }
