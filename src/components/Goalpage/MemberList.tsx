@@ -13,6 +13,7 @@ interface Member {
 export default function MemberList() {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isSeeMyImageModalVisible, setIsSeeMyImageModalVisible] = useState(false);
+    const [canOpenSeeMyImageModal, setCanOpenSeeMyImageModal] = useState(false);
     const [members, setMembers] = useState<Member[]>([
         { id: '1', username: '김' },
         { id: '2', username: '박' },
@@ -27,9 +28,9 @@ export default function MemberList() {
         const fetchMyData = async () => {
             try {
                 const response = await API.User.getMyInfo();
-                    setMyId(response.username);
-                    setMyName(response.nickname);
-                    console.log(myId, myName);    
+                    console.log(response);
+                    setMyId(response.id);
+                    setMyName(response.nickname);  
             } catch (error) {
                 console.error('내 정보를 불러오는 중 오류가 발생했습니다:', error);
             }
@@ -38,11 +39,17 @@ export default function MemberList() {
     }, []);
 
     useEffect(() => {
+        // myId와 myName이 업데이트되면 canOpenSeeMyImageModal 상태를 true로 변경
+        if (myId && myName) {
+            setCanOpenSeeMyImageModal(true);
+        }
+    }, [myId, myName]);
+
+    useEffect(() => {
         const fetchMemberList = async () => {
             setLoading(true);
             try {
                 const response = await API.User.getGroupMemberList();
-
                 if (response.status === 'OK' && response.data) {
                     const memberList: Member[] = response.data;
                     setMembers(memberList);
@@ -66,7 +73,11 @@ export default function MemberList() {
     };
 
     const openSeeMyImageModal = () => {
-        setIsSeeMyImageModalVisible(true);
+        if (canOpenSeeMyImageModal) {
+            setIsSeeMyImageModalVisible(true);
+        } else {
+            alert('내 정보를 불러오는 중입니다. 잠시 후 다시 시도해주세요.');
+        }
     }
 
     const closeSeeMyImageModal = () => {
