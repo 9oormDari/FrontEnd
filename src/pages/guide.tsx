@@ -69,49 +69,11 @@ export default function Guide() {
                 </div>
             )}
 
-        >
-            <div className="w-full flex justify-start lg:justify-center">
-                <h1 className="text-4xl font-bold p-5 pt-[50px] lg:pt-[100px] text-left lg:text-center">
-                    <span className="block lg:hidden">
-                        구름다리 어떻게 <br /> 이용하나요?
-                    </span>
-                    <span className="hidden lg:block">
-                        구름다리 어떻게 이용하나요?
-                    </span>
-                </h1>
-            </div>
-            <div
-                className={cn(
-                    'grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center justify-center pt-[0px] lg:pt-[50px] overflow-auto'
-                )}
-            >
-                <GuideCard
-                    stepNumber={1}
-                    imageUrl={GuideOne}
-                    footerText={'친구들과 <br />함께'}
-                />
-                <GuideCard
-                    stepNumber={2}
-                    imageUrl={GuideTwo}
-                    footerText={'루틴 달성 후 <br />인증'}
-                />
-                <GuideCard
-                    stepNumber={3}
-                    imageUrl={GuideThree}
-                    footerText={'구름다리로 <br />루틴 성취 확인'}
-                />
-                <GuideCard
-                    stepNumber={4}
-                    imageUrl={GuideFour}
-                    footerText={'루틴 성취율 <br />한눈에 확인'}
-                />
-            </div>
-            <div className="mt-24 mb-24 sm:mt-60 sm:mb-40 text-white">
+            {/* 부모 요소에 flex와 justify-center 추가 */}
+            <div className="mt-24 mb-24 sm:mt-60 sm:mb-40 text-white flex justify-center">
                 <StartButton isLoggedIn={false} />{' '}
                 {/* 로그인 상태에 따라 prop 변경 */}
             </div>
-
-
         </div>
     );
 }
