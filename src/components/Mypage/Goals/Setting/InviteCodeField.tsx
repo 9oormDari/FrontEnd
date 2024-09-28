@@ -25,7 +25,7 @@ const InviteCodeField: React.FC = () => {
     };
 
     return (
-        <div className="bg-[#E9EBF8] p-10 rounded-lg shadow-lg w-full max-w-md drop-shadow-md">
+        <div className="w-full">
             <div className="border border-gray-300 rounded-lg overflow-hidden mb-5">
                 <div className="bg-[#5A82F1] h-[50px] flex items-center justify-center">
                     <h2 className="text-[20px] font-bold text-center text-white">
@@ -59,7 +59,6 @@ const InviteCodeField: React.FC = () => {
                     />
                 </div>
             </div>
-
             <button
                 onClick={handleConfirmClick}
                 className={cn(

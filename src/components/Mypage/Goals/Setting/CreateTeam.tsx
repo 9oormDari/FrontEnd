@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { API } from '../../../../lib/api'; // __Team 네임스페이스 경로에 맞게 import
 import InviteCodeField from './InviteCodeField'; // InviteCodeField 컴포넌트를 임포트합니다.
 import cn from '../../../../lib/cn';
 
@@ -12,7 +13,7 @@ const CreateTeam: React.FC = () => {
     const [routine2, setRoutine2] = useState('');
     const [routine3, setRoutine3] = useState('');
     const [routine4, setRoutine4] = useState('');
-    const [showInviteCode, setShowInviteCode] = useState(false); // 상태 추가
+    const [showInviteCode, setShowInviteCode] = useState(false);
 
     const handleInputChange =
         (setter: React.Dispatch<React.SetStateAction<string>>) =>
@@ -20,17 +21,43 @@ const CreateTeam: React.FC = () => {
             setter(e.target.value);
         };
 
-    const handleNextClick = () => {
-        // 다음 단계로 가는 로직 추가
-        console.log('팀 이름:', teamName);
-        setShowInviteCode(true); // InviteCodeField 컴포넌트를 보여주도록 상태 변경
+    // 날짜 형식을 'YYYY-MM-DD'로 변환
+    const formatDate = (month: string, day: string) => {
+        // 월과 일의 형식을 두 자리로 맞추기
+        const formattedMonth = month.padStart(2, '0');
+        const formattedDay = day.padStart(2, '0');
+        return `2024-${formattedMonth}-${formattedDay}`;
+    };
+
+    const handleNextClick = async () => {
+        // LocalDate 형식의 deadline 생성
+        const deadline = formatDate(durationMonths, durationDays);
+
+        try {
+            // 팀 생성 API 호출
+            await API.Team.createTeam({
+                teamName,
+                goal,
+                deadline, // YYYY-MM-DD 형식의 deadline 전송
+                routine1,
+                routine2,
+                routine3,
+                routine4,
+            });
+
+            // 초대 코드 입력 필드를 보여줌
+            setShowInviteCode(true);
+        } catch (error) {
+            console.error('팀 생성 실패:', error);
+            alert('팀 생성에 실패했습니다.');
+        }
     };
 
     return (
-        <div className="h-2/3 flex items-center justify-center w-full">
+        <div className="w-full">
             <div>
                 {showInviteCode ? (
-                    <InviteCodeField /> // InviteCodeField 컴포넌트를 렌더링
+                    <InviteCodeField />
                 ) : (
                     <>
                         <div className="bg-[#E9EBF8] rounded-lg shadow-lg w-full  drop-shadow-md">
