@@ -1,6 +1,7 @@
 import MemberCard from './MemberList/MemberCard';
 import { API } from '../../lib/api/index.ts';
 import { useState, useEffect } from 'react';
+import cn from '../../lib/cn';
 
 interface Member {
     id: string;
@@ -55,6 +56,20 @@ export default function MemberList() {
                     />
                 ))}
             </div>
-        </>
+            <button className={cn(
+                "w-64 md:w-96 h-12 md:h-16 bg-[#5A82F1] text-white rounded-lg hover:bg-blue-600",
+                "transition text-sm md:text-xl font-semibold mt-10 "
+                )}
+            >
+                나의 인증 등록하기
+            </button>
+            <button className={cn(
+                "w-64 md:w-96 h-12 md:h-16 bg-[#575757] text-white rounded-lg hover:bg-slate-700",
+                "transition text-sm md:text-xl font-semibold mt-3 "
+                )}
+            >
+                나의 인증 보러가기
+            </button>
+        </> 
     );
 }
