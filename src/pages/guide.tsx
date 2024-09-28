@@ -4,6 +4,7 @@ import GuideOne from '../assets/guide/guide-1.png';
 import GuideThree from '../assets/guide/guide-3.png';
 import GuideTwo from '../assets/guide/guide-2.png';
 import cn from '../lib/cn';
+import StartButton from '../components/StartButton';
 
 export default function Guide() {
     return (
@@ -47,6 +48,10 @@ export default function Guide() {
                     imageUrl={GuideFour}
                     footerText={'루틴 성취율 <br />한눈에 확인'}
                 />
+            </div>
+            <div className="mt-24 mb-24 sm:mt-60 sm:mb-40 text-white">
+                <StartButton isLoggedIn={false} />{' '}
+                {/* 로그인 상태에 따라 prop 변경 */}
             </div>
         </div>
     );
