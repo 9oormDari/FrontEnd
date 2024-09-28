@@ -79,16 +79,36 @@ export default function GoormScreen() {
                 </button>
             </div>
 
-            <div className="grid grid-cols-4 grid-rows-2 gap-2 md:gap-4 mt-8">
-                {clouds.map((cloud, index) => (
-                    <CloudComponent
-                        key={index}
-                        cloudType={cloud.cloudType}
-                        colStart={cloud.colStart}
-                        rowStart={cloud.rowStart}
-                        hidden={cloud.hidden}
+            <div className="relative grid grid-cols-4 grid-rows-2 gap-2 md:gap-4 mt-8">
+            {clouds.map((cloud, index) => (
+                <CloudComponent
+                key={index}
+                cloudType={cloud.cloudType}
+                colStart={cloud.colStart}
+                rowStart={cloud.rowStart}
+                hidden={cloud.hidden}
+                />
+            ))}
+                
+                {/* 무지개 이미지를 절대 위치로 배치 */}
+                <div className="absolute inset-x-0 top-[90px] md:top-[242px] flex justify-center transform -translate-y-1/2">
+                    {/* 무지개 이미지 */}
+                    <img
+                        src={Rainbow1}
+                        alt="첫 번째 무지개"
+                        className={`w-1/4 ${stage >= 2 ? "" : "invisible"}`}
                     />
-                ))}
+                    <img
+                        src={Rainbow2}
+                        alt="두 번째 무지개"
+                        className={`w-1/4 ${stage >= 3 ? "" : "invisible"}`}
+                    />
+                    <img
+                        src={Rainbow1}
+                        alt="세 번째 무지개"
+                        className={`w-1/4 ${stage >= 4 ? "" : "invisible"}`}
+                    />
+                </div>
             </div>
         </div>
     );

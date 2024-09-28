@@ -30,7 +30,7 @@ export default function CloudComponent({
                 src={cloudType}
                 alt="구름"
                 className="md:w-[220px] md:h-[220px]"
-                style={{ zIndex: 1 }}
+                style={{ zIndex: 2 }}
             />
             <img
                 src={CloudDisk}
@@ -40,7 +40,7 @@ export default function CloudComponent({
                     'absolute mt-20 md:mt-[200px]',
                     `${cloudType === ColorCloud ? '' : 'hidden'}`
                 )}
-                style={{ zIndex: 0 }}
+                style={{ zIndex: 1 }}
             />
         </div>
     );
