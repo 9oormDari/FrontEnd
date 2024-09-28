@@ -10,7 +10,9 @@ interface NavLinkProps {
 export default function NavLink({ href, label }: NavLinkProps) {
     const location = useLocation();
     const navigate = useNavigate(); // useNavigate 훅 사용
-    const isActive = location.pathname === href;
+    const isActive =
+        location.pathname === href ||
+        (href === '/login' && location.pathname === '/register');
 
     const handleClick = () => {
         navigate(href); // 페이지 이동

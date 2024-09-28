@@ -42,7 +42,7 @@ export default function Register() {
             ) : (
                 <div
                     className={cn(
-                        'flex items-center justify-center min-h-[500px] pt-[50px]'
+                        'flex items-center justify-center min-h-[500px] pt-[100px]'
                     )}
                 >
                     <div

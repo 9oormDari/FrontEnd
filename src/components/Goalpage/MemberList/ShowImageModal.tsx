@@ -86,9 +86,7 @@ export default function ShowImageModal({
                             src={image.url} // 이미지 URL 설정
                             alt={image.alt} // 대체 텍스트 설정
                             className={cn(
-
                                 'flex justify-center items-center w-[80vw] md:w-[80vw]',
-
 
                                 'h-32 md:h-48 object-cover rounded' // 이미지 스타일링
                             )}

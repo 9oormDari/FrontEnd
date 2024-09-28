@@ -37,7 +37,9 @@ export default function Goal() {
                 >
                     {/* 로그인 확인 컴포넌트 */}
                     {!isLogin ? (
-                        <NeedLoginComponents />
+                        <div className="pt-[100px]">
+                            <NeedLoginComponents />
+                        </div>
                     ) : (
                         <>
                             <div className="flex flex-col items-center justify-center w-full ">
