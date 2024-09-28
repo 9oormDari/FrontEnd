@@ -56,11 +56,13 @@ export default function Header() {
             )}
         >
             {/* 로고 영역 */}
-            <img
-                src="/logo_blue.svg"
-                alt="logo_blue"
-                className="px-1 md:px-0 w-[108px] h-[40px] md:w-[216px] md:h-[80px]"
-            />
+            <a href="/">
+                <img
+                    src="/logo_blue.svg"
+                    alt="logo_blue"
+                    className="px-1 md:px-0 w-[108px] h-[40px] md:w-[216px] md:h-[80px]"
+                />
+            </a>
 
             {/* 햄버거 메뉴 컴포넌트 */}
             <HamburgerMenu onClick={toggleMenu} isOpen={isMenuOpen} />
