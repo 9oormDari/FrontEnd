@@ -17,6 +17,7 @@ interface Cloud {
 export default function GoormScreen() {
     const [stage, setStage] = useState<number>(0);
     const [myId, setMyId] = useState<string>('');
+    const [clouds, setClouds] = useState<Cloud[]>([]); 
 
     useEffect(() => {
         const fetchMyData = async () => {
@@ -48,32 +49,36 @@ export default function GoormScreen() {
         fetchMyData();
     }, []);
 
-    const clouds: Cloud[] = [
-        {
-            cloudType: stage >= 1 ? ColorCloud : BlueCloud,
-            colStart: 1,
-            rowStart: 1,
-            hidden: stage < 1,
-        },
-        {
-            cloudType: stage >= 2 ? ColorCloud : BlueCloud,
-            colStart: 2,
-            rowStart: 2,
-            hidden: stage < 2,
-        },
-        {
-            cloudType: stage >= 3 ? ColorCloud : BlueCloud,
-            colStart: 3,
-            rowStart: 1,
-            hidden: stage < 3,
-        },
-        {
-            cloudType: stage >= 4 ? ColorCloud : BlueCloud,
-            colStart: 4,
-            rowStart: 2,
-            hidden: stage < 4,
-        },
-    ];
+    useEffect(() => {
+        const newClouds: Cloud[] = [
+            {
+                cloudType: stage === 1 ? ColorCloud : BlueCloud,
+                colStart: 1,
+                rowStart: 1,
+                hidden: stage < 1,
+            },
+            {
+                cloudType: stage === 2 ? ColorCloud : BlueCloud,
+                colStart: 2,
+                rowStart: 2,
+                hidden: stage < 2,
+            },
+            {
+                cloudType: stage === 3 ? ColorCloud : BlueCloud,
+                colStart: 3,
+                rowStart: 1,
+                hidden: stage < 3,
+            },
+            {
+                cloudType: stage === 4 ? ColorCloud : BlueCloud,
+                colStart: 4,
+                rowStart: 2,
+                hidden: stage < 4,
+            },
+        ];
+
+        setClouds(newClouds); // 새로운 clouds 배열로 업데이트
+    }, [stage]); // stage가 변경될 때마다 실행
 
     // 임시로 집어넣은 구름 단계 증가 함수
     const increaseStage = () => {
