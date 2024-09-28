@@ -46,4 +46,15 @@ export namespace __User {
             body,
         });
     }
+
+    // 캘린더 받아오는 함수
+    export async function getCalendar(month: string) {
+        const url = `${BASE_URL}/calendar/${month}`;
+
+        return fetchData({
+            url,
+            method: 'GET',
+            tokenOn: true, // tokenOn 플래그 추가
+        });
+    }
 }

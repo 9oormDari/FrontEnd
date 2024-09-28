@@ -24,7 +24,7 @@ export default function Guide() {
             </div>
             <div
                 className={cn(
-                    'grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center justify-center pt-[0px] lg:pt-[50px]'
+                    'grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center justify-center pt-[0px] lg:pt-[50px] overflow-auto'
                 )}
             >
                 <GuideCard

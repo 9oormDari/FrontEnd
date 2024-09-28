@@ -18,11 +18,13 @@ export default function CloudComponent({
     return (
         <div
             className={cn(
-                `col-start-${colStart}`,
-                `row-start-${rowStart}`,
                 'flex justify-center flex-col items-center',
                 `${hidden ? 'hidden' : ''}`
             )}
+            style={{
+                gridColumnStart: colStart,
+                gridRowStart: rowStart,
+            }}
         >
             <img
                 src={cloudType}
