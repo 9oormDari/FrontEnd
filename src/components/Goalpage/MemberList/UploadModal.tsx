@@ -32,12 +32,18 @@ export default function MultiStepModal({ isVisible, onClose }: MultiStepModalPro
       if (!image || !selectedRoutine) return;
 
       try {
-          // 여기에 이미지와 루틴 정보를 백엔드에 전송하는 API 호출 로직 추가
-          const response = await API.User.uploadRoutine(
-              index, // 루틴 인덱스
-              selectedRoutine, // 선택한 루틴
-              image, // 전송할 이미지 파일
-          );
+          // FormData 객체 생성
+        const formData = new FormData();
+        formData.append('routineIndex', index.toString()); // 인덱스 값을 문자열로 변환하여 추가
+        formData.append('routineName', selectedRoutine); // 루틴 이름 추가
+        formData.append('file', image); // 이미지 파일 추가
+
+        // API 호출
+        const response = await API.User.uploadRoutine(
+            (index + 1).toString(), // 루틴 인덱스
+            selectedRoutine, // 선택한 루틴
+            image // 전송할 이미지 파일
+        );
           
           if (response.status === 'OK') {
               setStep(3); // 성공 시 3단계로 이동
@@ -112,9 +118,9 @@ export default function MultiStepModal({ isVisible, onClose }: MultiStepModalPro
                               'w-full bg-blue-500 text-white rounded-lg',
                               'py-2 hover:bg-blue-600 mb-4'
                           )}
-                          onClick={handleCancel} // 다시 시도할 경우 이전 단계로 이동
+                          onClick={handleCancel}
                       >
-                          재시도
+                          닫기
                       </button>
                   </div>
               )}

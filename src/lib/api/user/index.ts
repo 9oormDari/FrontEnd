@@ -92,21 +92,24 @@ export namespace __User {
     }
 
     export async function uploadRoutine(
-        routineIndex: number,
+        routineIndex: string,
         routineName: string,
         file: File
     ) {
         const url = `${BASE_URL}/routine/upload`;
 
+        // FormData 객체 생성
+        const formData = new FormData();
+        formData.append('routineIndex', routineIndex.toString());
+        formData.append('routineName', routineName);
+        formData.append('file', file);
+        
         return fetchData({
             url,
             method: 'POST',
-            body: {
-                routineIndex,
-                routineName,
-                file,
-            },
+            body: formData,
             tokenOn: true,
+            isFormData: true,
         });
     }
 
