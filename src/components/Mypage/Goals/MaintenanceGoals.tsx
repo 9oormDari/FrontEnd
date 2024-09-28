@@ -1,9 +1,9 @@
-import HeatmapComponent from '../../Cal-Heatmap/HeatmapComponent';
+import Calander from './Calander';
 
 const MaintenanceGoals: React.FC = () => {
     return (
         <div className="bg-gray-200 rounded-lg">
-            <HeatmapComponent />
+            <Calander />
         </div>
     );
 };
