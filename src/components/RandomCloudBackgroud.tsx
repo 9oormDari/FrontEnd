@@ -75,24 +75,6 @@ const RandomCloudBackground: React.FC = () => {
                     y={selectedPositionSet[index].y}
                 />
             ))}
-
-            {/* 구름 애니메이션을 위한 스타일 정의 */}
-            <style jsx key={key}>{`
-                @keyframes fadeIn {
-                    from {
-                        opacity: 0;
-                        transform: translateY(-20px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-
-                .cloud-fade-in {
-                    animation: fadeIn 2s ease-in-out forwards;
-                }
-            `}</style>
         </div>
     );
 };

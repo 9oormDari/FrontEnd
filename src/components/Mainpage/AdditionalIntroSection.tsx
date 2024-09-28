@@ -1,13 +1,13 @@
-import Item from './Item';
-import cn from '../../lib/cn';
-import Flag from '../../assets/MainPage/Icons/Flag.svg';
 import AchievedCircle from '../../assets/MainPage/Icons/AchievedCircle.svg';
 import Camera from '../../assets/MainPage/Icons/Camera.svg';
-import Friends from '../../assets/MainPage/Icons/Friends.svg';
 import EnjoyFace from '../../assets/MainPage/Icons/EnjoyFace.svg';
-import Trophy from '../../assets/MainPage/Icons/Trophy.svg';
+import Flag from '../../assets/MainPage/Icons/Flag.svg';
+import Friends from '../../assets/MainPage/Icons/Friends.svg';
+import Item from './Item';
 import StartButton from '../StartButton';
+import Trophy from '../../assets/MainPage/Icons/Trophy.svg';
 import cloudImage from '../../assets/cloud.png';
+import cn from '../../lib/cn';
 
 export default function AdditionalIntroSection() {
     const items = [
@@ -73,7 +73,7 @@ export default function AdditionalIntroSection() {
                 </div>
             </div>
             <div className="mt-24 mb-24 sm:mt-60 sm:mb-40 text-white">
-                <StartButton isLoggedIn={false} />{' '}
+                <StartButton />{' '}
                 {/* 로그인 상태에 따라 prop 변경 */}
             </div>
         </section>
