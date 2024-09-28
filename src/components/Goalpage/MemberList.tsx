@@ -2,7 +2,7 @@ import MemberCard from './MemberList/MemberCard';
 import { API } from '../../lib/api/index.ts';
 import { useState, useEffect } from 'react';
 import cn from '../../lib/cn';
-import ImageUploadModal from './MemberList/ImageUploadModal.tsx';
+import UploadModal from './MemberList/UploadModal.tsx';
 
 interface Member {
     id: string;
@@ -75,7 +75,7 @@ export default function MemberList() {
                 나의 인증 등록하기
             </button>
             {isModalVisible && (
-                <ImageUploadModal isVisible={isModalVisible} onClose={closeModal} />
+                <UploadModal isVisible={isModalVisible} onClose={closeModal} />
             )}
             <button className={cn(
                 "w-64 md:w-96 h-12 md:h-16 bg-[#575757] text-white rounded-lg hover:bg-slate-700",

@@ -90,4 +90,33 @@ export namespace __User {
             tokenOn: true,
         });
     }
+
+    export async function uploadRoutine(
+        routineIndex: number,
+        routineName: string,
+        file: File
+    ) {
+        const url = `${BASE_URL}/routine/upload`;
+
+        return fetchData({
+            url,
+            method: 'POST',
+            body: {
+                routineIndex,
+                routineName,
+                file,
+            },
+            tokenOn: true,
+        });
+    }
+
+    export async function getUserRoutine() {
+        const url = `${BASE_URL}/team/routine-list`;
+
+        return fetchData({
+            url,
+            method: 'GET',
+            tokenOn: true,
+        });
+    }
 }
