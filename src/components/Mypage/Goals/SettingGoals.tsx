@@ -4,23 +4,32 @@ import { API } from '../../../lib/api'; // API 모듈 경로에 맞게 import
 import CreateTeam from './Setting/CreateTeam'; // CreateTeam 컴포넌트를 임포트합니다.
 import InputCodeField from './Setting/InputCodeField'; // InviteCodeField 컴포넌트를 임포트합니다.
 import NotGood from '../../../assets/NotGood.svg';
+import Pending from '../../Pending/Loading.tsx'; // Pending 컴포넌트 추가
+import TeamsRoutine from './Setting/TeamsRoutine'; // TeamsRoutine 컴포넌트 import
 
 const SettingGoals: React.FC = () => {
     const [showCreateTeam, setShowCreateTeam] = useState(false);
     const [showInviteCode, setShowInviteCode] = useState(false);
+    const [userRoutine, setUserRoutine] = useState(null); // 유저 루틴 상태 관리
+    const [loading, setLoading] = useState(true); // 로딩 상태 추가
 
-    // 화면 렌더될 때 기록 조회
+    // 화면 렌더될 때 기록 조회 및 유저 루틴 조회
     useEffect(() => {
-        const fetchHistories = async () => {
+        const fetchUserRoutine = async () => {
             try {
-                const response = await API.Team.getHistories();
-                console.log('기록 조회 성공:', response);
+                const routineResponse = await API.Team.getUserRoutine();
+                console.log('유저 루틴 조회 성공:', routineResponse);
+                if (routineResponse.data) {
+                    setUserRoutine(routineResponse.data); // 루틴이 있으면 상태에 저장
+                }
             } catch (error) {
-                console.error('기록 조회 실패:', error);
+                console.error('유저 루틴 조회 실패:', error);
+            } finally {
+                setLoading(false); // 데이터가 로드되면 로딩 상태 해제
             }
         };
 
-        fetchHistories();
+        fetchUserRoutine(); // 유저 루틴을 조회하고 상태에 저장
     }, []); // 빈 배열을 사용하여 컴포넌트가 처음 렌더링될 때만 실행
 
     const handleCreateTeamClick = () => {
@@ -31,6 +40,10 @@ const SettingGoals: React.FC = () => {
         setShowInviteCode(true);
     };
 
+    if (loading) {
+        return <Pending height={500} />; // 로딩 중일 때 Pending 컴포넌트를 표시
+    }
+
     if (showCreateTeam) {
         return <CreateTeam />;
     }
@@ -39,6 +52,12 @@ const SettingGoals: React.FC = () => {
         return <InputCodeField />;
     }
 
+    // 유저 루틴이 있으면 TeamsRoutine 컴포넌트를 렌더링
+    if (userRoutine) {
+        return <TeamsRoutine routineData={userRoutine} />;
+    }
+
+    // 유저 루틴이 없으면 팀 생성 UI를 표시
     return (
         <div className="flex flex-col items-center justify-center">
             <img src={NotGood} alt="Not Good" className="w-2/5 h-2/5" />

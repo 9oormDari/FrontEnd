@@ -18,6 +18,7 @@ interface Cloud {
 export default function GoormScreen() {
     const [stage, setStage] = useState<number>(0);
     const [targetStage, setTargetStage] = useState<number>(0); // 목표 스테이지 상태 추가
+
     const [clouds, setClouds] = useState<Cloud[]>([]); 
     const id = useIdStore((state) => state.id);
 
@@ -74,6 +75,7 @@ export default function GoormScreen() {
 
         fetchMyData();
     }, []);
+
 
     // stage가 변경될 때 clouds 상태 업데이트
     useEffect(() => {

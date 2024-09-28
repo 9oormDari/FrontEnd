@@ -6,9 +6,10 @@ import useIdStore from '../../idStore';
 interface MemberCardProps {
     id: string; // 회원을 식별할 수 있는 고유 ID
     name: string;
+    profileUrl: string;
 }
 
-export default function MemberCard({ id, name }: MemberCardProps) {
+export default function MemberCard({ id, name, profileUrl }: MemberCardProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const setId = useIdStore((state) => state.setId);
 
@@ -29,7 +30,10 @@ export default function MemberCard({ id, name }: MemberCardProps) {
                 'flex flex-col items-center justify-center bg-gray-200 rounded-lg relative p-6 md:p-20'
             )}
         >
-            <div className="w-16 md:w-32 h-16 md:h-32 bg-gray-300 rounded-full mb-4"></div>
+            <img
+                className="w-16 md:w-32 h-16 md:h-32 bg-gray-300 rounded-full mb-4"
+                src={profileUrl}
+            />
             <div className="text-base md:text-2xl font-bold mb-4">{name}</div>
             <button
                 className={cn(

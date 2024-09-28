@@ -90,6 +90,8 @@ export namespace __User {
             tokenOn: true,
         });
     }
+    export async function currentStep() {
+        const url = `${BASE_URL}/user/current-step`;
 
     export async function getUserStep(id:string) {
         const url = `${BASE_URL}/user/current-step/${id}`;
@@ -100,7 +102,6 @@ export namespace __User {
             tokenOn: true,
         });
     }
-
     export async function uploadRoutine(
         routineIndex: string,
         routineName: string,

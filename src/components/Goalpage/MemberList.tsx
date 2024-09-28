@@ -8,6 +8,7 @@ import ShowImageModal from './MemberList/ShowImageModal.tsx';
 interface Member {
     id: string;
     username: string;
+    profileUrl: string;
 }
 
 export default function MemberList() {
@@ -15,9 +16,9 @@ export default function MemberList() {
     const [isSeeMyImageModalVisible, setIsSeeMyImageModalVisible] = useState(false);
     const [canOpenSeeMyImageModal, setCanOpenSeeMyImageModal] = useState(false);
     const [members, setMembers] = useState<Member[]>([
-        { id: '1', username: 'Empty Data' },
-        { id: '2', username: 'Empty Data' },
-        { id: '3', username: 'Empty Data' },
+        { id: '1', username: 'Empty Data', profileUrl: ''  },
+        { id: '2', username: 'Empty Data', profileUrl: ''  },
+        { id: '3', username: 'Empty Data', profileUrl: ''  },
     ]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -100,6 +101,7 @@ export default function MemberList() {
                         key={member.id}
                         id={member.id}
                         name={member.username}
+                        profileUrl={member.profileUrl}
                     />
                 ))}
             </div>
