@@ -19,7 +19,7 @@ const Goals: React.FC = () => {
     const isSetting = sector === 'setting';
 
     return (
-        <div className="w-full max-w-lg">
+        <div className="w-full max-w-2xl">
             {/* 목표 점검 및 설정 버튼 */}
             <div className="flex w-full">
                 {/* 목표 점검 (maintenance) 버튼 */}

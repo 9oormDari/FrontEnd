@@ -57,4 +57,37 @@ export namespace __User {
             tokenOn: true, // tokenOn 플래그 추가
         });
     }
+
+    export async function getGroupMemberList() {
+        const url = `${BASE_URL}/team/user-list`;
+
+        return fetchData({
+            url,
+            method: 'GET',
+            tokenOn: true,
+        });
+    }
+
+    export async function getTeamMemberRoutine(id: string) {
+        const url = `${BASE_URL}/routine/${id}`;
+
+        return fetchData({
+            url,
+            method: 'GET',
+            body: {
+                id,
+            },
+            tokenOn: true,
+        });
+    }
+
+    export async function getMyInfo() {
+        const url = `${BASE_URL}/user/info`;
+
+        return fetchData({
+            url,
+            method: 'GET',
+            tokenOn: true,
+        });
+    }
 }

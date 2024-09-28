@@ -25,7 +25,7 @@ export default function MemberCard({ id, name }: MemberCardProps) {
             )}
         >
             <div className="w-16 md:w-32 h-16 md:h-32 bg-gray-300 rounded-full mb-4"></div>
-            <div className="text-base font-bold mb-4">{name}</div>
+            <div className="text-base md:text-2xl font-bold mb-4">{name}</div>
             <button
                 className={cn(
                     'w-16 md:w-32 h-8 md:h-12 bg-slate-400 text-white rounded-lg',
