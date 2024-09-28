@@ -32,13 +32,13 @@ const SettingGoals: React.FC = () => {
             </div>
             <div className="flex flex-col gap-2.5 mt-5 md:mt-10">
                 <button
-                    className={`w-[500px] h-[70px] bg-[#5A82F1] rounded-lg text-white text-base md:text-2xl font-bold transition-transform duration-300 hover:scale-105`}
+                    className={`w-[500px] h-[70px] bg-[#5A82F1] rounded-lg text-white text-base md:text-2xl font-bold transition-transform duration-300`}
                     onClick={handleCreateTeamClick}
                 >
                     팀 만들기
                 </button>
                 <button
-                    className={`w-[500px] h-[70px] bg-[#797979] rounded-lg text-white text-base md:text-2xl font-bold transition-transform duration-300 hover:scale-105`}
+                    className={`w-[500px] h-[70px] bg-[#797979] rounded-lg text-white text-base md:text-2xl font-bold transition-transform duration-300`}
                     onClick={handleInviteCodeClick}
                 >
                     초대 코드 입력하기

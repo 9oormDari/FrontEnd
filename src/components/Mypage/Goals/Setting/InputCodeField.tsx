@@ -41,7 +41,7 @@ const InviteCodeField: React.FC = () => {
             </div>
             <button
                 onClick={handleConfirmClick}
-                className="w-full py-3 bg-[#5A82F1] text-white font-bold rounded-lg transition-transform duration-300 hover:scale-105"
+                className="w-full py-3 bg-[#5A82F1] text-white font-bold rounded-lg transition-transform duration-300"
             >
                 확인
             </button>
