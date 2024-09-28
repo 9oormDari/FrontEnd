@@ -57,4 +57,14 @@ export namespace __User {
             tokenOn: true, // tokenOn 플래그 추가
         });
     }
+
+    export async function getGroupMemberList() {
+        const url = `${BASE_URL}/team/user-list`;
+
+        return fetchData({
+            url,
+            method: 'GET',
+            tokenOn: true,
+        });
+    }
 }
