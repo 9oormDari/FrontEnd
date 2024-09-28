@@ -71,7 +71,7 @@ export namespace __Team {
     }
 
     export async function getUserRoutine() {
-        const url = `${BASE_URL}/team/routine-list`
+        const url = `${BASE_URL}/team/routine-list`;
 
         return fetchData({
             url,
