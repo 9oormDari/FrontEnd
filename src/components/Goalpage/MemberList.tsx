@@ -15,9 +15,9 @@ export default function MemberList() {
     const [isSeeMyImageModalVisible, setIsSeeMyImageModalVisible] = useState(false);
     const [canOpenSeeMyImageModal, setCanOpenSeeMyImageModal] = useState(false);
     const [members, setMembers] = useState<Member[]>([
-        { id: '1', username: '김' },
-        { id: '2', username: '박' },
-        { id: '3', username: '최' },
+        { id: '1', username: 'Empty Data' },
+        { id: '2', username: 'Empty Data' },
+        { id: '3', username: 'Empty Data' },
     ]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);

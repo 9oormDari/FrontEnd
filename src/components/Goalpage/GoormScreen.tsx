@@ -17,58 +17,57 @@ interface Cloud {
 
 export default function GoormScreen() {
     const [stage, setStage] = useState<number>(0);
-    const [myId, setMyId] = useState<string>('');
+    const [targetStage, setTargetStage] = useState<number>(0); // 목표 스테이지 상태 추가
     const [clouds, setClouds] = useState<Cloud[]>([]); 
     const id = useIdStore((state) => state.id);
 
-    //rerender when id is changed
+    // id가 변경될 때 데이터를 가져오는 함수
     useEffect(() => {
-        if (id) {
-            const fetchUserData = async () => {
-                try {
-                    const response = await API.User.getUserStep(id);
-                    if (response.status === 'OK' && response.data) {
-                        console.log(response.data);
-                        const dataCount = response.data.length;
-                        setStage(dataCount);
-                    } else {
-                        console.error('응답 상태가 OK가 아니거나 데이터가 없습니다.');
-                        setStage(0);
-                    }
-                }
-                catch (error) {
-                    console.error('내 정보를 불러오는 중 오류가 발생했습니다:', error);
-                    setStage(0);
-                }
-            };
-            fetchUserData();
-        }
-    }, [id]);
-    
+        const fetchUserData = async () => {
+            if (!id) return; // id가 없으면 실행하지 않음
 
-    useEffect(() => {
-        const fetchMyData = async () => {
             try {
-                const response = await API.User.getMyInfo();
-
+                const response = await API.User.getUserStep(id);
                 if (response.status === 'OK' && response.data) {
-                    // 사용자 ID 설정
-                    setMyId(response.data.id);
-
-                    // 'data' 배열이 존재하고 배열인지 확인 후 길이 설정
-                    if (response.data.data && Array.isArray(response.data.data)) {
-                        const dataCount = response.data.data.length;
-                        setStage(dataCount);
-                    } else {
-                        // 'data' 배열이 없거나 배열이 아닌 경우 0으로 설정
-                        setStage(0);
-                    }
+                    console.log("currentStep", response.data.currentStep);
+                    setTargetStage(response.data.currentStep); // 목표 스테이지 설정
+                    setStage(0); // 초기 스테이지를 0으로 설정
                 } else {
                     console.error('응답 상태가 OK가 아니거나 데이터가 없습니다.');
+                    setTargetStage(0);
                     setStage(0);
                 }
             } catch (error) {
                 console.error('내 정보를 불러오는 중 오류가 발생했습니다:', error);
+                setTargetStage(0);
+                setStage(0);
+            }
+        };
+
+        fetchUserData();
+    }, [id]);
+
+    useEffect(() => {
+        const fetchMyData = async () => {
+            try {
+                const response = await API.User.currentStep();
+
+                if (response.status === 'OK' && response.data) {
+                    setStage(0);
+                    setTargetStage(response.data.currentStep);
+                    console.log('현재 스테이지:', response.data.currentStep);
+                } else {
+                    console.error(
+                        '응답 상태가 OK가 아니거나 데이터가 없습니다.'
+                    );
+                    setStage(0);
+                    setTargetStage(0);
+                }
+            } catch (error) {
+                console.error(
+                    '내 정보를 불러오는 중 오류가 발생했습니다:',
+                    error
+                );
                 setStage(0);
             }
         };
@@ -76,52 +75,53 @@ export default function GoormScreen() {
         fetchMyData();
     }, []);
 
+    // stage가 변경될 때 clouds 상태 업데이트
     useEffect(() => {
-        const newClouds: Cloud[] = [
-            {
-                cloudType: stage === 1 ? ColorCloud : BlueCloud,
-                colStart: 1,
-                rowStart: 1,
-                hidden: stage < 1,
-            },
-            {
-                cloudType: stage === 2 ? ColorCloud : BlueCloud,
-                colStart: 2,
-                rowStart: 2,
-                hidden: stage < 2,
-            },
-            {
-                cloudType: stage === 3 ? ColorCloud : BlueCloud,
-                colStart: 3,
-                rowStart: 1,
-                hidden: stage < 3,
-            },
-            {
-                cloudType: stage === 4 ? ColorCloud : BlueCloud,
-                colStart: 4,
-                rowStart: 2,
-                hidden: stage < 4,
-            },
-        ];
-
-        setClouds(newClouds); // 새로운 clouds 배열로 업데이트
-    }, [stage]); // stage가 변경될 때마다 실행
-
-    // 임시로 집어넣은 구름 단계 증가 함수
-    const increaseStage = () => {
-        setStage((prev) => (prev < 4 ? prev + 1 : prev));
-    };
+        console.log("Stage updated:", stage);
+        const updateClouds = () => {
+            const newClouds: Cloud[] = [
+                {
+                    cloudType: stage === 1 ? ColorCloud : BlueCloud,
+                    colStart: 1,
+                    rowStart: 1,
+                    hidden: stage < 1,
+                },
+                {
+                    cloudType: stage === 2 ? ColorCloud : BlueCloud,
+                    colStart: 2,
+                    rowStart: 2,
+                    hidden: stage < 2,
+                },
+                {
+                    cloudType: stage === 3 ? ColorCloud : BlueCloud,
+                    colStart: 3,
+                    rowStart: 1,
+                    hidden: stage < 3,
+                },
+                {
+                    cloudType: stage === 4 ? ColorCloud : BlueCloud,
+                    colStart: 4,
+                    rowStart: 2,
+                    hidden: stage < 4,
+                },
+            ];
+    
+            setClouds(newClouds); // 새로운 clouds 배열로 업데이트
+        };
+    
+        updateClouds();
+    }, [stage, targetStage]); // stage가 변경될 때마다 실행
 
     // 구름 증가시키는데 천천히 증가하도록 설정
     useEffect(() => {
-        if (stage < 4) { // 최대 스테이지가 4라면
+        if (stage <= targetStage) { // 목표 스테이지를 넘지 않도록 설정
             const timer = setTimeout(() => {
-                increaseStage();
+                setStage((prev) => (prev < targetStage ? prev + 1 : prev)); // 목표 스테이지를 넘지 않도록 증가
             }, 1000);
 
             return () => clearTimeout(timer);
         }
-    }, [stage]);
+    }, [stage, targetStage]);
 
     return (
         <div
