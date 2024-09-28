@@ -66,7 +66,7 @@ const RandomCloudBackground: React.FC = () => {
     }, [location.pathname]); // 경로 변경 시마다 좌표 세트 변경
 
     return (
-        <div className="absolute top-0 left-0 w-full h-full z-0">
+        <div className="absolute top-0 left-0 w-full h-full z-0 overflow-hidden">
             {cloudImages.map((cloud, index) => (
                 <Cloud
                     key={index}
