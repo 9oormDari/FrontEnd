@@ -50,7 +50,7 @@ export default function Register() {
                 <div className={cn('flex flex-col items-center gap-[10px]')}>
                     <input
                         className={cn(
-                            'w-[500px] h-[70px] px-4 py-2 border border-gray-300 rounded',
+                            'w-[300px] md:w-[500px] h-[70px] px-4 py-2 border border-gray-300 rounded',
                             'focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#E9EBF8]'
                         )}
                         type="text"
@@ -60,7 +60,7 @@ export default function Register() {
                     />
                     <input
                         className={cn(
-                            'w-[500px] h-[70px] px-4 py-2 border border-gray-300 rounded',
+                            'w-[300px] md:w-[500px] h-[70px] px-4 py-2 border border-gray-300 rounded',
                             'focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#E9EBF8]'
                         )}
                         type="text"
@@ -70,7 +70,7 @@ export default function Register() {
                     />
                     <input
                         className={cn(
-                            'w-[500px] h-[70px] px-4 py-2 border border-gray-300 rounded',
+                            'w-[300px] md:w-[500px] h-[70px] px-4 py-2 border border-gray-300 rounded',
                             'focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#E9EBF8]'
                         )}
                         type="password"
@@ -80,7 +80,7 @@ export default function Register() {
                     />
                     <input
                         className={cn(
-                            'w-[500px] h-[70px] px-4 py-2 border border-gray-300 rounded',
+                            'w-[300px] md:w-[500px] h-[70px] px-4 py-2 border border-gray-300 rounded',
                             'focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#E9EBF8]'
                         )}
                         type="password"
@@ -91,10 +91,10 @@ export default function Register() {
                 </div>
 
                 {/* 확인 및 취소 버튼 영역 */}
-                <div className={cn('flex w-[500px] gap-[10px]')}>
+                <div className={cn('flex w-[500px] gap-[10px] justify-center')}>
                     <button
                         className={cn(
-                            'w-1/2 h-[70px] bg-[#5A82F1] text-white font-bold rounded',
+                            'w-1/4 md:w-1/2 h-[70px] bg-[#5A82F1] text-white font-bold rounded',
                             'hover:bg-[#4A72D1] focus:outline-none focus:ring-2 focus:ring-[#5A82F1]'
                         )}
                         onClick={handleRegister}
@@ -103,7 +103,7 @@ export default function Register() {
                     </button>
                     <button
                         className={cn(
-                            'w-1/2 h-[70px] bg-[#A2A2A2] text-white font-bold rounded',
+                            'w-1/4 md:w-1/2 h-[70px] bg-[#A2A2A2] text-white font-bold rounded',
                             'hover:bg-[#929292] focus:outline-none focus:ring-2 focus:ring-[#A2A2A2]'
                         )}
                         onClick={() => navigate(-1)}

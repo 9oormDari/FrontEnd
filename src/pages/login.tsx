@@ -1,11 +1,8 @@
 import { API } from '../lib/api';
 import cn from '../lib/cn.ts';
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function Login() {
-    const navigate = useNavigate();
-
     // 입력 필드 상태 관리
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -15,7 +12,7 @@ export default function Login() {
             // 로그인 요청
             await API.User.login(username, password);
             alert('로그인 성공!');
-            navigate('/'); // 로그인 성공 시 메인 페이지로 이동
+            window.location.href = '/'; // 로그인 성공 시 메인 페이지로 이동
         } catch (error) {
             console.error('로그인 실패:', error);
             alert('로그인에 실패했습니다.');
@@ -42,7 +39,7 @@ export default function Login() {
                 <div className={cn('flex flex-col items-center gap-[10px]')}>
                     <input
                         className={cn(
-                            'w-[500px] h-[70px] px-4 py-2 border border-gray-300',
+                            'w-[300px] md:w-[500px] h-[70px] px-4 py-2 border border-gray-300',
                             'rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#E9EBF8]'
                         )}
                         type="text"
@@ -52,7 +49,7 @@ export default function Login() {
                     />
                     <input
                         className={cn(
-                            'w-[500px] h-[70px] px-4 py-2 border border-gray-300 rounded',
+                            'w-[300px] md:w-[500px] h-[70px] px-4 py-2 border border-gray-300 rounded',
                             'focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#E9EBF8]'
                         )}
                         type="password"
@@ -66,7 +63,7 @@ export default function Login() {
                 <div className={cn('flex flex-col items-center gap-[10px]')}>
                     <button
                         className={cn(
-                            'w-[500px] h-[70px] bg-[#5A82F1] text-white font-bold rounded',
+                            'w-[300px] md:w-[500px] h-[70px] bg-[#5A82F1] text-white font-bold rounded',
                             'hover:bg-[#4A72D1] focus:outline-none focus:ring-2 focus:ring-[#5A82F1]'
                         )}
                         onClick={handleLogin} // 로그인 버튼 클릭 시 실행
@@ -75,10 +72,10 @@ export default function Login() {
                     </button>
                     <button
                         className={cn(
-                            'w-[500px] h-[70px] bg-[#575757] text-white font-bold rounded',
+                            'w-[300px] md:w-[500px] h-[70px] bg-[#575757] text-white font-bold rounded',
                             'hover:bg-[#474747] focus:outline-none focus:ring-2 focus:ring-[#575757]'
                         )}
-                        onClick={() => navigate('/register')}
+                        onClick={() => (window.location.href = '/register')} // 회원가입 버튼 클릭 시 window.location 사용
                     >
                         회원가입
                     </button>
