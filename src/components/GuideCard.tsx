@@ -34,7 +34,7 @@ const GuideCard: React.FC<GuideCardProps> = ({
                     />
                 )}
             </div>
-            <div className="bg-blue-100 text-center py-2 sm:py-4 rounded-b-[15px]">
+            <div className="bg-blue-100 text-center py-2 sm:py-4 rounded-b-[15px] transfrom transition-transform duration-300 hover:scale-105">
                 <p
                     className="text-lg sm:text-2xl text-[#575757] font-mid"
                     dangerouslySetInnerHTML={{ __html: footerText }}
