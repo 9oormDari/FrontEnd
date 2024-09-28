@@ -7,9 +7,13 @@ import cn from '../../lib/cn';
 
 interface PendingProps {
     height: number | string; // 높이를 px 또는 vh 단위로 받음
+    backgroundColor?: string; // 배경색을 선택적으로 받음
 }
 
-const Pending: React.FC<PendingProps> = ({ height }) => {
+const Pending: React.FC<PendingProps> = ({
+    height,
+    backgroundColor = 'white',
+}) => {
     const [imageUrl, setImageUrl] = useState<string | null>(null);
 
     // 이미지 목록을 배열로 정의
@@ -26,12 +30,10 @@ const Pending: React.FC<PendingProps> = ({ height }) => {
 
     return (
         <div
-            className={cn(
-                'fixed inset-0 flex items-center justify-center w-full'
-            )} // fixed로 화면 고정, 너비는 100%, 중앙 정렬
+            className={cn('flex items-center justify-center w-full')} // 너비는 100%, 중앙 정렬
             style={{
                 height: heightStyle,
-                backgroundColor: 'white', // 배경색 흰색
+                backgroundColor: backgroundColor, // 배경색 설정
             }}
         >
             {/* 이미지가 중앙에 정렬된 컨테이너 */}
