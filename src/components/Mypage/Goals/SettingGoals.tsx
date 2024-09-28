@@ -1,17 +1,26 @@
-import CreateTeam from './Setting/CreateTeam.tsx'; // CreateTeam 컴포넌트를 임포트합니다.
+import CreateTeam from './Setting/CreateTeam'; // CreateTeam 컴포넌트를 임포트합니다.
+import InputCodeField from './Setting/InputCodeField'; // InviteCodeField 컴포넌트를 임포트합니다.
 import NotGood from '../../../assets/NotGood.svg';
-import cn from '../../../lib/cn.ts';
 import { useState } from 'react';
 
 const SettingGoals: React.FC = () => {
     const [showCreateTeam, setShowCreateTeam] = useState(false);
+    const [showInviteCode, setShowInviteCode] = useState(false);
 
     const handleCreateTeamClick = () => {
         setShowCreateTeam(true);
     };
 
+    const handleInviteCodeClick = () => {
+        setShowInviteCode(true);
+    };
+
     if (showCreateTeam) {
         return <CreateTeam />;
+    }
+
+    if (showInviteCode) {
+        return <InputCodeField />;
     }
 
     return (
@@ -23,21 +32,14 @@ const SettingGoals: React.FC = () => {
             </div>
             <div className="flex flex-col gap-2.5 mt-5 md:mt-10">
                 <button
-                    className={cn(
-                        'w-[500px] h-[70px] bg-[#5A82F1] rounded-lg',
-                        'text-white text-base md:text-2xl font-bold',
-                        'transition-transform duration-300 hover:scale-105'
-                    )}
+                    className={`w-[500px] h-[70px] bg-[#5A82F1] rounded-lg text-white text-base md:text-2xl font-bold transition-transform duration-300 hover:scale-105`}
                     onClick={handleCreateTeamClick}
                 >
                     팀 만들기
                 </button>
                 <button
-                    className={cn(
-                        'w-[500px] h-[70px] bg-[#797979] rounded-lg',
-                        'text-white text-base md:text-2xl font-bold',
-                        'transition-transform duration-300 hover:scale-105'
-                    )}
+                    className={`w-[500px] h-[70px] bg-[#797979] rounded-lg text-white text-base md:text-2xl font-bold transition-transform duration-300 hover:scale-105`}
+                    onClick={handleInviteCodeClick}
                 >
                     초대 코드 입력하기
                 </button>

@@ -1,7 +1,7 @@
 import { fetchData } from '../util'; // 경로에 맞게 fetchData를 import
 
 export namespace __Team {
-    const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+    const BASE_URL = 'https://goormdari.shop';
 
     // 팀 생성 함수
     export async function createTeam(teamInfo: {
@@ -31,6 +31,18 @@ export namespace __Team {
             method: 'POST',
             body,
             tokenOn: true,
+        });
+    }
+
+    // 팀 가입 함수
+    export async function joinTeam(joinCode: string) {
+        const url = `${BASE_URL}/team/join/${joinCode}`;
+
+        // 서버에 팀 가입 요청
+        return fetchData({
+            url,
+            method: 'POST',
+            tokenOn: true, // 인증이 필요한 경우 토큰 포함
         });
     }
 }
