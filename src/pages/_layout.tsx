@@ -14,9 +14,12 @@ export default function NotFoundPage() {
     return (
         <div>
             <Header />
-            <Suspense fallback={'loading...'}>
-                <Outlet />
-            </Suspense>
+            {/* 헤더의 높이만큼 상단에 패딩을 추가 */}
+            <div className="pt-[75px] md:pt-[150px]">
+                <Suspense fallback={'loading...'}>
+                    <Outlet />
+                </Suspense>
+            </div>
             {!hideFooter && <Footer />}
         </div>
     );

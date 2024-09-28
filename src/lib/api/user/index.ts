@@ -80,4 +80,14 @@ export namespace __User {
             tokenOn: true,
         });
     }
+
+    export async function getMyInfo() {
+        const url = `${BASE_URL}/user/info`;
+
+        return fetchData({
+            url,
+            method: 'GET',
+            tokenOn: true,
+        });
+    }
 }

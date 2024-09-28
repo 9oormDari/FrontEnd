@@ -15,7 +15,11 @@ interface ImageData {
     alt: string; // 이미지 대체 텍스트
 }
 
-export default function ShowImageModal({ memberId, memberName, onClose }: ShowImageModalProps) {
+export default function ShowImageModal({
+    memberId,
+    memberName,
+    onClose,
+}: ShowImageModalProps) {
     // 백엔드에서 가져온 이미지들을 저장할 상태
     const [images, setImages] = useState<ImageData[]>([]);
 
@@ -53,11 +57,14 @@ export default function ShowImageModal({ memberId, memberName, onClose }: ShowIm
     }, []);
 
     // 가져온 이미지와 기본 이미지를 결합하여 최대 4개의 이미지를 생성
-    const displayImages = [...images, ...Array(4 - images.length).fill({
-        id: 'no-image', // ID 대신 'no-image'로 채움
-        url: NoImage, // 기본 이미지 URL
-        alt: 'No Image Available', // 대체 텍스트
-    })].slice(0, 4); // 최대 4개까지 표시
+    const displayImages = [
+        ...images,
+        ...Array(4 - images.length).fill({
+            id: 'no-image', // ID 대신 'no-image'로 채움
+            url: NoImage, // 기본 이미지 URL
+            alt: 'No Image Available', // 대체 텍스트
+        }),
+    ].slice(0, 4); // 최대 4개까지 표시
 
     return (
         <div
@@ -74,22 +81,23 @@ export default function ShowImageModal({ memberId, memberName, onClose }: ShowIm
                 </h1>
                 <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {displayImages.map((image, index) => (
+                        <div 
+                        key={`${image.id}-${index}`}
+                        className="h-32 md:h-48 bg-gray-200 flex justify-center items-center rounded"
+                        >
                         <img
-                            key={`${image.id}-${index}`} // 고유한 key 설정
-                            src={image.url} // 이미지 URL 설정
-                            alt={image.alt} // 대체 텍스트 설정
-                            className={cn(
-                                "flex justify-center items-center w-[80vp] md:w-[80vp]",
-                                "h-32 md:h-48 object-cover rounded" // 이미지 스타일링
-                            )}
+                            src={image.url} 
+                            alt={image.alt}
+                            className="w-full h-full object-contain"
                         />
+                        </div>
                     ))}
                 </div>
                 <div className="flex items-center justify-center p-2">
                     <button
                         className={cn(
                             'w-32 md:w-64 h-10 bg-blue-400 text-white text-2xl',
-                            'rounded-lg hover:bg-blue-500 transition-colors',
+                            'rounded-lg hover:bg-blue-500 transition-colors'
                         )}
                         onClick={onClose}
                         aria-label="Close Modal" // 접근성을 위한 aria-label
