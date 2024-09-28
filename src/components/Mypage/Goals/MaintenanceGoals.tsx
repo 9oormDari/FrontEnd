@@ -54,7 +54,7 @@ const MaintenanceGoals: React.FC = () => {
     }, [currentDate]);
 
     return (
-        <div className="bg-gray-200 rounded-lg p-4">
+        <div className="bg-gray-200 rounded-lg p-4 sm:px-20">
             {loading ? (
                 <Pending height={600} backgroundColor="D9D9D9" /> // 로딩 중일 때만 Pending 컴포넌트를 표시
             ) : error ? (
