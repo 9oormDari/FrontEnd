@@ -73,6 +73,7 @@ export default function Guide() {
 
             <div className="mt-24 mb-24 sm:mt-60 sm:mb-40 text-white flex justify-center transfrom transition-transform duration-300 hover:scale-105">
                 <StartButton /> {/* 로그인 상태에 따라 prop 변경 */}
+            </div>
         </div>
     );
 }
