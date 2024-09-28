@@ -1,50 +1,20 @@
-# React + TypeScript + Vite
+<img src="./img/landingPage.webp" />
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 구름톤 3기 연합 해커톤 5팀 '구름다리' FrontEnd
 
-Currently, two official plugins are available:
 
--   [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
--   [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [**Stacks**](#기술스택)
+- [**Members**](#멤버)
 
-## Expanding the ESLint configuration
+### Stacks
+![My Skills](https://go-skill-icons.vercel.app/api/icons?i=ts,react,vite,tailwindcss,zustand,github,vercel)
+- 개발 : TypeScipt, React, Tailwindcss
+- 빌드툴 : Vite
+- 전역 상태 관리 : Zustand
+- 배포 : Github, Github Actions, Vercel
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Members
+|[김민태](https://github.com/liupei8979)|[송윤석](https://github.com/karpitony)|[최세연](https://github.com/Seyeonnnn)|
+|:---:|:---:|:---:|
+|<img width=100 src="https://avatars.githubusercontent.com/u/95998412?v=4"/>|<img width=100 src="https://avatars.githubusercontent.com/u/87839885?v=4"/>|<img width=100 src="https://avatars.githubusercontent.com/u/144412217?v=4"/>|
 
--   Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-    languageOptions: {
-        // other options...
-        parserOptions: {
-            project: ['./tsconfig.node.json', './tsconfig.app.json'],
-            tsconfigRootDir: import.meta.dirname,
-        },
-    },
-});
-```
-
--   Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
--   Optionally add `...tseslint.configs.stylisticTypeChecked`
--   Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react';
-
-export default tseslint.config({
-    // Set the react version
-    settings: { react: { version: '18.3' } },
-    plugins: {
-        // Add the react plugin
-        react,
-    },
-    rules: {
-        // other rules...
-        // Enable its recommended rules
-        ...react.configs.recommended.rules,
-        ...react.configs['jsx-runtime'].rules,
-    },
-});
-```
