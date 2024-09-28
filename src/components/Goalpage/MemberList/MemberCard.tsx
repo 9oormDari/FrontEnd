@@ -1,6 +1,7 @@
 import ShowImageModal from './ShowImageModal';
 import { useState } from 'react';
 import cn from '../../../lib/cn';
+import useIdStore from '../../idStore';
 
 interface MemberCardProps {
     id: string; // 회원을 식별할 수 있는 고유 ID
@@ -10,11 +11,15 @@ interface MemberCardProps {
 
 export default function MemberCard({ id, name, profileUrl }: MemberCardProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const setId = useIdStore((state) => state.setId);
 
+    // 모달을 열고 id를 설정하는 함수
     const handleOpenModal = () => {
-        setIsModalOpen(true);
+        setId(id); // zustand 스토어의 id를 설정
+        setIsModalOpen(true); // 모달 열기
     };
 
+    // 모달을 닫는 함수
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
@@ -35,11 +40,10 @@ export default function MemberCard({ id, name, profileUrl }: MemberCardProps) {
                     'w-16 md:w-32 h-8 md:h-12 bg-slate-400 text-white rounded-lg',
                     'hover:bg-slate-700 transition text-sm md:text-xl font-semibold'
                 )}
-                onClick={handleOpenModal}
+                onClick={handleOpenModal} // 모달 열기와 id 설정을 하나의 함수로 처리
             >
                 보러 가기
             </button>
-
             {isModalOpen && (
                 <ShowImageModal
                     memberId={id}

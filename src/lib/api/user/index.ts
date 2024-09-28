@@ -90,8 +90,8 @@ export namespace __User {
             tokenOn: true,
         });
     }
-    export async function currentStep() {
-        const url = `${BASE_URL}/user/current-step`;
+    export async function getUserStep(id:string) {
+        const url = `${BASE_URL}/user/current-step/${id}`;
 
         return fetchData({
             url,
@@ -123,6 +123,16 @@ export namespace __User {
 
     export async function getUserRoutine() {
         const url = `${BASE_URL}/team/routine-list`;
+
+        return fetchData({
+            url,
+            method: 'GET',
+            tokenOn: true,
+        });
+    }
+
+    export async function currentStep() {
+        const url = `${BASE_URL}/user/current-step`;
 
         return fetchData({
             url,
