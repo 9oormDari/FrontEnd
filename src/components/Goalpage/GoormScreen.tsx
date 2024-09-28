@@ -6,6 +6,7 @@ import Rainbow1 from '../../assets/GoalPage/Rainbow1.svg';
 import Rainbow2 from '../../assets/GoalPage/Rainbow2.svg';
 import CloudComponent from './GoormScreen/CloudComponent';
 import { API } from '../../lib/api/index.ts';
+import useIdStore from '../../components/idStore.ts';
 
 interface Cloud {
     cloudType: string;
@@ -18,6 +19,32 @@ export default function GoormScreen() {
     const [stage, setStage] = useState<number>(0);
     const [myId, setMyId] = useState<string>('');
     const [clouds, setClouds] = useState<Cloud[]>([]); 
+    const id = useIdStore((state) => state.id);
+
+    //rerender when id is changed
+    useEffect(() => {
+        if (id) {
+            const fetchUserData = async () => {
+                try {
+                    const response = await API.User.getUserStep(id);
+                    if (response.status === 'OK' && response.data) {
+                        console.log(response.data);
+                        const dataCount = response.data.length;
+                        setStage(dataCount);
+                    } else {
+                        console.error('응답 상태가 OK가 아니거나 데이터가 없습니다.');
+                        setStage(0);
+                    }
+                }
+                catch (error) {
+                    console.error('내 정보를 불러오는 중 오류가 발생했습니다:', error);
+                    setStage(0);
+                }
+            };
+            fetchUserData();
+        }
+    }, [id]);
+    
 
     useEffect(() => {
         const fetchMyData = async () => {

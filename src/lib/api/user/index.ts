@@ -90,6 +90,16 @@ export namespace __User {
             tokenOn: true,
         });
     }
+    
+    export async function getUserStep(id:string) {
+        const url = `${BASE_URL}/user/current-step/${id}`;
+
+        return fetchData({
+            url,
+            method: 'GET',
+            tokenOn: true,
+        });
+    }
 
     export async function uploadRoutine(
         routineIndex: string,
