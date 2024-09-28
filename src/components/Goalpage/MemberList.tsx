@@ -21,7 +21,11 @@ export default function MemberList() {
 
             <div className="flex flex-row gap-2 sm:gap-4 md:gap-10 pt-10">
                 {members.map((member) => (
-                    <MemberCard key={member.id} id={member.id} name={member.name} />
+                    <MemberCard
+                        key={member.id}
+                        id={member.id}
+                        name={member.name}
+                    />
                 ))}
             </div>
         </>
