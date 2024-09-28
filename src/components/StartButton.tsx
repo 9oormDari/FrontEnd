@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import cloudImage from '../assets/cloud.png'; // assets 폴더의 cloud.png 이미지 경로
 
-interface StartButtonProps {
-    isLoggedIn: boolean;
-}
-
-const StartButton: React.FC<StartButtonProps> = ({ isLoggedIn }) => {
+const StartButton: React.FC = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 관리
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // localStorage에서 accesstoken 확인
+        const token = localStorage.getItem('accesstoken');
+        if (token) {
+            setIsLoggedIn(true); // 토큰이 있으면 로그인 상태로 설정
+        }
+    }, []);
 
     const handleButtonClick = () => {
         if (isLoggedIn) {
