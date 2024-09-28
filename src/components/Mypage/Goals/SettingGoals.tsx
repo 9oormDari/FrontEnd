@@ -9,7 +9,7 @@ const SettingGoals: React.FC = () => {
     const [showCreateTeam, setShowCreateTeam] = useState(false);
     const [showInviteCode, setShowInviteCode] = useState(false);
 
-    // 화면 렌더될 때 기록 조회
+    // 화면 렌더될 때 기록 조회 및 유저 루틴 조회
     useEffect(() => {
         const fetchHistories = async () => {
             try {
@@ -20,7 +20,17 @@ const SettingGoals: React.FC = () => {
             }
         };
 
+        const fetchUserRoutine = async () => {
+            try {
+                const routineResponse = await API.Team.getUserRoutine();
+                console.log('유저 루틴 조회 성공:', routineResponse);
+            } catch (error) {
+                console.error('유저 루틴 조회 실패:', error);
+            }
+        };
+
         fetchHistories();
+        fetchUserRoutine(); // 유저 루틴을 조회하고 콘솔에 출력
     }, []); // 빈 배열을 사용하여 컴포넌트가 처음 렌더링될 때만 실행
 
     const handleCreateTeamClick = () => {
