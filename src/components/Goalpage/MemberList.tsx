@@ -2,6 +2,7 @@ import MemberCard from './MemberList/MemberCard';
 import { API } from '../../lib/api/index.ts';
 import { useState, useEffect } from 'react';
 import cn from '../../lib/cn';
+import ImageUploadModal from './MemberList/ImageUploadModal.tsx';
 
 interface Member {
     id: string;
@@ -9,6 +10,7 @@ interface Member {
 }
 
 export default function MemberList() {
+    const [isModalVisible, setIsModalVisible] = useState(false);
     const [members, setMembers] = useState<Member[]>([
         { id: '1', username: '김' },
         { id: '2', username: '박' },
@@ -37,6 +39,14 @@ export default function MemberList() {
         fetchMemberList();
     }, []);
 
+    const openModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const closeModal = () => {
+        setIsModalVisible(false);
+    };
+
     return (
         <>
             <div className="w-full text-2xl md:text-4xl font-bold text-left px-4 md:px-10 pt-10">
@@ -60,9 +70,13 @@ export default function MemberList() {
                 "w-64 md:w-96 h-12 md:h-16 bg-[#5A82F1] text-white rounded-lg hover:bg-blue-600",
                 "transition text-sm md:text-xl font-semibold mt-10 "
                 )}
+                onClick={openModal}
             >
                 나의 인증 등록하기
             </button>
+            {isModalVisible && (
+                <ImageUploadModal isVisible={isModalVisible} onClose={closeModal} />
+            )}
             <button className={cn(
                 "w-64 md:w-96 h-12 md:h-16 bg-[#575757] text-white rounded-lg hover:bg-slate-700",
                 "transition text-sm md:text-xl font-semibold mt-3 "
