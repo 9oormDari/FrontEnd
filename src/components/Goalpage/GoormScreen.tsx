@@ -17,7 +17,7 @@ interface Cloud {
 export default function GoormScreen() {
     const [stage, setStage] = useState<number>(0);
     const [myId, setMyId] = useState<string>('');
-    const [clouds, setClouds] = useState<Cloud[]>([]); 
+    const [clouds, setClouds] = useState<Cloud[]>([]);
 
     useEffect(() => {
         const fetchMyData = async () => {
@@ -29,7 +29,10 @@ export default function GoormScreen() {
                     setMyId(response.data.id);
 
                     // 'data' 배열이 존재하고 배열인지 확인 후 길이 설정
-                    if (response.data.data && Array.isArray(response.data.data)) {
+                    if (
+                        response.data.data &&
+                        Array.isArray(response.data.data)
+                    ) {
                         const dataCount = response.data.data.length;
                         setStage(dataCount);
                     } else {
@@ -37,11 +40,16 @@ export default function GoormScreen() {
                         setStage(0);
                     }
                 } else {
-                    console.error('응답 상태가 OK가 아니거나 데이터가 없습니다.');
+                    console.error(
+                        '응답 상태가 OK가 아니거나 데이터가 없습니다.'
+                    );
                     setStage(0);
                 }
             } catch (error) {
-                console.error('내 정보를 불러오는 중 오류가 발생했습니다:', error);
+                console.error(
+                    '내 정보를 불러오는 중 오류가 발생했습니다:',
+                    error
+                );
                 setStage(0);
             }
         };
@@ -87,7 +95,8 @@ export default function GoormScreen() {
 
     // 구름 증가시키는데 천천히 증가하도록 설정
     useEffect(() => {
-        if (stage < 4) { // 최대 스테이지가 4라면
+        if (stage < 4) {
+            // 최대 스테이지가 4라면
             const timer = setTimeout(() => {
                 increaseStage();
             }, 1000);

@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+import { API } from '../../../lib/api';
 import NoImage from '../../../assets/GoalPage/NoImage.png';
 import cn from '../../../lib/cn';
-import { API } from '../../../lib/api';
 
 interface ShowImageModalProps {
     memberId: string; // 멤버 ID

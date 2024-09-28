@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { API } from '../lib/api/index.ts';
 import Pending from '../components/Pending/Loading.tsx'; // Pending 컴포넌트 추가
@@ -13,7 +13,16 @@ export default function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [isPending, setIsPending] = useState(false); // 로딩 상태 관리
+    const [isPending, setIsPending] = useState(true); // 로딩 상태 관리 (처음엔 true)
+
+    // 컴포넌트가 마운트될 때 0.2초 동안 Pending 표시
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsPending(false); // 0.2초 후 로딩 상태 해제
+        }, 200);
+
+        return () => clearTimeout(timer); // 컴포넌트 언마운트 시 타이머 정리
+    }, []);
 
     const handleRegister = async () => {
         if (password !== confirmPassword) {
@@ -35,6 +44,13 @@ export default function Register() {
         }
     };
 
+    const handleCancel = () => {
+        setIsPending(true); // 취소 시에도 로딩 상태로 전환
+        setTimeout(() => {
+            navigate(-1); // 0.2초 대기 후 이전 페이지로 이동
+        }, 200);
+    };
+
     return (
         <div>
             {isPending ? (
@@ -42,7 +58,7 @@ export default function Register() {
             ) : (
                 <div
                     className={cn(
-                        'flex items-center justify-center min-h-[500px] pt-[50px]'
+                        'flex items-center justify-center min-h-[500px] pt-[100px]'
                     )}
                 >
                     <div
@@ -125,7 +141,7 @@ export default function Register() {
                                     'w-1/4 md:w-1/2 h-[70px] bg-[#A2A2A2] text-white font-bold rounded',
                                     'hover:bg-[#929292] focus:outline-none focus:ring-2 focus:ring-[#A2A2A2]'
                                 )}
-                                onClick={() => navigate(-1)}
+                                onClick={handleCancel} // 취소 버튼 클릭 시 handleCancel 실행
                             >
                                 취소
                             </button>
