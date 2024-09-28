@@ -170,7 +170,8 @@ const Calendar: React.FC = () => {
             <div
               key={index}
               className={cn(
-                'relative flex items-center justify-center w-14 h-14 text-xs md:text-base', 
+                'relative flex items-center justify-center text-xs md:text-base', 
+                'h-8 sm:h-10 md:h-14  w-8 sm:w-10 md:w-14',
                 'text-center text-black rounded-full transition-colors',
                 `${day === null ? 'opacity-50' : 'cursor-pointer '}`,
                 `${day ? getHeatmapColor(achieved || 0) : ''}`
