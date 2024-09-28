@@ -52,7 +52,8 @@ export default function Header() {
             className={cn(
                 'bg-white flex items-center justify-between',
                 'h-[75px] md:h-[150px] p-2 md:px-20',
-                'border-b-2 border-[#DBDBDB] relative'
+                'border-b-2 border-[#DBDBDB] fixed top-0 left-0 w-full z-50',
+                'shadow-md' // 추가: 그림자 효과
             )}
         >
             {/* 로고 영역 */}
@@ -88,7 +89,7 @@ export default function Header() {
             <div
                 ref={menuRef}
                 className={cn(
-                    'fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50', 
+                    'fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50',
                     'transform transition-transform duration-300',
                     isMenuOpen ? 'translate-x-0' : 'translate-x-full'
                 )}

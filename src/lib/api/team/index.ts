@@ -57,4 +57,16 @@ export namespace __Team {
             tokenOn: true, // 인증이 필요한 경우 토큰 포함
         });
     }
+
+    // 기록 조회 함수
+    export async function getHistories() {
+        const url = `${BASE_URL}/histories`;
+
+        // 서버에서 기록 조회 요청 (GET)
+        return fetchData({
+            url,
+            method: 'GET',
+            tokenOn: true, // 인증이 필요한 경우 토큰 포함
+        });
+    }
 }
