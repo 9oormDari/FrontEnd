@@ -198,24 +198,24 @@ const Calendar: React.FC = () => {
                             ? dayAchieveMap.get(dayString)
                             : 0;
 
-          return (
-            <div
-              key={index}
-              className={cn(
-                'relative flex items-center justify-center text-xs md:text-base', 
-                'h-8 sm:h-10 md:h-14  w-8 sm:w-10 md:w-14',
-                'text-center text-black rounded-full transition-colors',
-                `${day === null ? 'opacity-50' : 'cursor-pointer '}`,
-                `${day ? getHeatmapColor(achieved || 0) : ''}`
-            )}
-            >
-              {day}
+                    return (
+                        <div
+                            key={index}
+                            className={cn(
+                                'relative flex items-center justify-center text-xs md:text-base',
+                                'h-8 sm:h-10 md:h-14  w-8 sm:w-10 md:w-14',
+                                'text-center text-black rounded-full transition-colors',
+                                `${day === null ? 'opacity-50' : 'cursor-pointer '}`,
+                                `${day ? getHeatmapColor(achieved || 0) : ''}`
+                            )}
+                        >
+                            {day}
+                        </div>
+                    );
+                })}
             </div>
-          );
-        })}
-      </div>
-    </div>
-  );
+        </div>
+    );
 };
 
 export default Calendar;
