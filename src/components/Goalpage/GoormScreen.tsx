@@ -133,6 +133,16 @@ export default function GoormScreen() {
                 'p-2 md:p-10 h-[30vh] md:h-[75vh]'
             )}
         >
+            {targetStage === 0 && (
+                <div className={cn(
+                    "text-white text-base sm:text-2xl md:text-4xl font-bold",
+                    "text-center flex justify-center mt-20"
+                    )}
+                >
+                    아직 어떠한 활동도 하지 않았어요...<br />
+                    어서 시작해보세요!
+                </div>
+            )}
             <div className="relative grid grid-cols-4 grid-rows-2 gap-2 md:gap-4 mt-8">
                 {clouds.map((cloud, index) => (
                     <CloudComponent

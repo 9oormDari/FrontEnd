@@ -92,7 +92,7 @@ export default function MemberList() {
                 <span> 팀원들의</span>
             </div>
             <div className="text-2xl md:text-4xl font-bold text-left w-full px-4 md:px-10 md:pt-4">
-                목표 인증을 확인해볼래요?
+                목표 인증을 확인해볼까요?
             </div>
 
             <div className="flex flex-row gap-2 sm:gap-4 md:gap-10 pt-10">
