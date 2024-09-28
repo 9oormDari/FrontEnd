@@ -20,7 +20,7 @@ export default function NavLink({ href, label }: NavLinkProps) {
         <div
             onClick={handleClick}
             className={cn(
-                'text-xl md:text-2xlp-1 p-1 md:p-4',
+                'text-xl md:text-2xl p-1 md:p-4',
                 `${isActive ? 'text-black font-bold' : 'text-gray-400 hover:text-gray-600'}`
             )}
         >
