@@ -1,9 +1,11 @@
-import HeatmapComponent from '../../Cal-Heatmap/HeatmapComponent';
+import DDayCounter from './DDayCounter';
+import Calander from './Calander';
 
 const MaintenanceGoals: React.FC = () => {
     return (
-        <div className="bg-gray-200 rounded-lg">
-            <HeatmapComponent />
+        <div className="bg-gray-200 rounded-lg p-4">
+            <DDayCounter />
+            <Calander />
         </div>
     );
 };

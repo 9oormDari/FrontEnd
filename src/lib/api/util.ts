@@ -15,7 +15,7 @@ export async function fetchData(args: {
 
     // tokenOn이 true일 경우, localStorage에서 accessToken을 가져와 헤더에 추가
     if (args.tokenOn) {
-        const token = localStorage.getItem('accessToken');
+        const token = localStorage.getItem('accesstoken');
         if (token) {
             headers['Authorization'] = token;
         }
