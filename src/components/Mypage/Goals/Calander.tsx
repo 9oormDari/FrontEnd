@@ -79,9 +79,9 @@ const Calendar: React.FC = () => {
       </div>
 
       {/* 요일 표시 */}
-      <div className="grid grid-cols-7 gap-2 mb-2">
+      <div className="grid grid-cols-7 gap-2 mb-2 font-semibold">
         {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day) => (
-          <span key={day} className="text-xs text-center text-black">
+          <span key={day} className="text-sm md:text-base text-center text-black">
             {day}
           </span>
         ))}

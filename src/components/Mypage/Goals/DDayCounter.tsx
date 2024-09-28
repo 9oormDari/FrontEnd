@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import { API } from '../../../lib/api/index.ts';// 
+import { API } from '../../../lib/api/index.ts';
 import dayjs from 'dayjs';
+import cn from '../../../lib/cn';
 
 const DDayCounter: React.FC = () => {
   const [dDay, setDDay] = useState<number | null>(null);
+  const [myGoal, setMyGoal] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -16,6 +18,7 @@ const DDayCounter: React.FC = () => {
         
         // dDay 업데이트
         setDDay(response.data.dDay);
+        setMyGoal(response.data.goal);
       } catch (err: any) {
         console.error('캘린더 데이터를 가져오는 중 오류 발생:', err);
         setError(err.message || '캘린더 데이터를 불러오는 데 실패했습니다.');
@@ -36,10 +39,17 @@ const DDayCounter: React.FC = () => {
   }
 
   return (
-    <div className="bg-white p-4 rounded shadow text-left mb-4">
-      <h1 className="text-2xl font-bold text-blue-500">
-        D-{dDay}
-      </h1>
+    <div className={cn(
+        "bg-white p-4 rounded shadow text-left mb-4",
+        "flex flex-row items-center justify-left gap-4"
+    )}
+    >
+        <h1 className="text-2xl font-bold text-blue-500">
+            D-{dDay}
+        </h1>
+        <p className="text-base font-semibold text-gray-500">
+            {myGoal}
+        </p>
     </div>
   );
 };
