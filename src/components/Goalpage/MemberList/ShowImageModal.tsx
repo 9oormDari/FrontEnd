@@ -89,7 +89,6 @@ export default function ShowImageModal({
 
                                 'flex justify-center items-center w-[80vw] md:w-[80vw]',
 
-                                'flex justify-center items-center w-[80vp] md:w-[80vp]',
 
                                 'h-32 md:h-48 object-cover rounded' // 이미지 스타일링
                             )}
