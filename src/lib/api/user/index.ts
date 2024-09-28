@@ -67,4 +67,17 @@ export namespace __User {
             tokenOn: true,
         });
     }
+
+    export async function getTeamMemberRoutine(id: string) {
+        const url = `${BASE_URL}/routine/${id}`;
+
+        return fetchData({
+            url,
+            method: 'GET',
+            body: {
+                id,
+            },
+            tokenOn: true,
+        });
+    }
 }
