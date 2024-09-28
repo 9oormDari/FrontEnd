@@ -1,27 +1,59 @@
 import MemberCard from './MemberList/MemberCard';
+import { API } from '../../lib/api/index.ts';
+import { useState, useEffect } from 'react';
+
+interface Member {
+    id: string;
+    username: string;
+}
+
 
 export default function MemberList() {
-    // 일단 임시로 멤버 데이터를 만들어둡니다
-    // 백엔드 완성시 교체 필요
-    const members = [
-        { id: '1', name: '김' },
-        { id: '2', name: '박' },
-        { id: '3', name: '최' },
-    ];
+    const [members, setMembers] = useState<Member[]>([
+        { id: '1', username: '김' },
+        { id: '2', username: '박' },
+        { id: '3', username: '최' },
+    ]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchMemberList = async () => {
+            setLoading(true);
+            try {
+                const response = await API.User.getGroupMemberList();
+
+                if (response.status === 'OK' && response.data) {
+                    const memberList: Member[] = response.data;
+                    setMembers(memberList);
+                }
+            } catch (e) {
+                setError('팀원 목록을 불러오는 중 오류가 발생했습니다.');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchMemberList();
+    }, []);
 
     return (
         <>
-            <div className="w-full text-4xl font-bold text-left px-10 pt-10">
+            <div className="w-full text-2xl md:text-4xl font-bold text-left px-4 md:px-10 pt-10">
                 <span className="text-blue-400">질수없조</span>
                 <span> 팀원들의</span>
             </div>
-            <div className="text-4xl font-bold text-left w-full px-10 pt-4">
+            <div className="text-2xl md:text-4xl font-bold text-left w-full px-4 md:px-10 md:pt-4">
                 목표 인증을 확인해볼래요?
             </div>
 
             <div className="flex flex-row gap-2 sm:gap-4 md:gap-10 pt-10">
                 {members.map((member) => (
-                    <MemberCard key={member.id} id={member.id} name={member.name} />
+                    <MemberCard
+                        key={member.id}
+                        id={member.id}
+                        name={member.username}
+                    />
                 ))}
             </div>
         </>

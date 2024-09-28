@@ -1,7 +1,7 @@
 import { fetchData } from '../util'; // 적절한 fetchData 파일 경로로 변경하세요
 
 export namespace __User {
-    const BASE_URL = "https://goormdari.shop";
+    const BASE_URL = 'https://goormdari.shop';
 
     // 로그인 함수
     export async function login(username: string, password: string) {
@@ -55,6 +55,29 @@ export namespace __User {
             url,
             method: 'GET',
             tokenOn: true, // tokenOn 플래그 추가
+        });
+    }
+
+    export async function getGroupMemberList() {
+        const url = `${BASE_URL}/team/user-list`;
+
+        return fetchData({
+            url,
+            method: 'GET',
+            tokenOn: true,
+        });
+    }
+
+    export async function getTeamMemberRoutine(id: string) {
+        const url = `${BASE_URL}/routine/${id}`;
+
+        return fetchData({
+            url,
+            method: 'GET',
+            body: {
+                id,
+            },
+            tokenOn: true,
         });
     }
 }

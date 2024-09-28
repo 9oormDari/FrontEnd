@@ -56,11 +56,13 @@ export default function Header() {
             )}
         >
             {/* 로고 영역 */}
-            <img
-                src="/logo_blue.svg"
-                alt="logo_blue"
-                className="px-1 md:px-0 w-[108px] h-[40px] md:w-[216px] md:h-[80px]"
-            />
+            <a href="/">
+                <img
+                    src="/logo_blue.svg"
+                    alt="logo_blue"
+                    className="px-1 md:px-0 w-[108px] h-[40px] md:w-[216px] md:h-[80px]"
+                />
+            </a>
 
             {/* 햄버거 메뉴 컴포넌트 */}
             <HamburgerMenu onClick={toggleMenu} isOpen={isMenuOpen} />
@@ -86,7 +88,8 @@ export default function Header() {
             <div
                 ref={menuRef}
                 className={cn(
-                    'fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50 transform transition-transform duration-300',
+                    'fixed top-0 right-0 h-full w-64 bg-white shadow-lg z-50', 
+                    'transform transition-transform duration-300',
                     isMenuOpen ? 'translate-x-0' : 'translate-x-full'
                 )}
             >

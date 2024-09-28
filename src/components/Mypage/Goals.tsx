@@ -1,8 +1,9 @@
-import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import cn from '../../lib/cn.ts';
+
 import MaintenanceGoals from './Goals/MaintenanceGoals';
+import React from 'react';
 import SettingGoals from './Goals/SettingGoals';
+import cn from '../../lib/cn.ts';
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -43,7 +44,7 @@ const Goals: React.FC = () => {
             </div>
 
             {/* sector에 따라 보여줄 컴포넌트 분기 */}
-            <div className="p-8">
+            <div className="py-8">
                 {isMaintenance && <MaintenanceGoals />}
                 {isSetting && <SettingGoals />}
             </div>
