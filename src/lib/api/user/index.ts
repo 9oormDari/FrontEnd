@@ -1,7 +1,7 @@
 import { fetchData } from '../util'; // 적절한 fetchData 파일 경로로 변경하세요
 
 export namespace __User {
-    const BASE_URL = "https://goormdari.shop";
+    const BASE_URL = 'https://goormdari.shop';
 
     // 로그인 함수
     export async function login(username: string, password: string) {

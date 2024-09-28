@@ -68,7 +68,10 @@ export default function ShowImageModal({ memberId, memberName, onClose }: ShowIm
                 className="bg-white w-full max-w-md sm:max-w-lg md:max-w-2xl h-auto p-4 rounded shadow-lg relative overflow-auto transform transition-transform duration-300 ease-in-out"
                 onClick={(e) => e.stopPropagation()} // 모달 내부 클릭 시 닫히지 않도록
             >
-                <h1 className="font-bold text-xl"> {memberName}님의 인증 사진</h1>
+                <h1 className="font-bold text-xl">
+                    {' '}
+                    {memberName}님의 인증 사진
+                </h1>
                 <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {displayImages.map((image, index) => (
                         <img
@@ -85,8 +88,8 @@ export default function ShowImageModal({ memberId, memberName, onClose }: ShowIm
                 <div className="flex items-center justify-center p-2">
                     <button
                         className={cn(
-                            "w-32 md:w-64 h-10 bg-blue-400 text-white text-2xl", 
-                            "rounded-lg hover:bg-blue-500 transition-colors"
+                            'w-32 md:w-64 h-10 bg-blue-400 text-white text-2xl',
+                            'rounded-lg hover:bg-blue-500 transition-colors',
                         )}
                         onClick={onClose}
                         aria-label="Close Modal" // 접근성을 위한 aria-label
