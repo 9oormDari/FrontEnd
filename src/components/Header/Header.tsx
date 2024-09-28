@@ -13,7 +13,7 @@ export default function Header() {
 
     useEffect(() => {
         // localStorage에서 accessToken을 확인하여 로그인 여부 설정
-        const token = localStorage.getItem('accessToken');
+        const token = localStorage.getItem('accesstoken');
         if (token) {
             setIsLoggedIn(true);
         } else {

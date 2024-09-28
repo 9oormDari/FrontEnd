@@ -21,7 +21,7 @@ export namespace __User {
         // 로그인 성공 시 accessToken을 localStorage에 저장
         const { accessToken } = response;
         if (accessToken) {
-            localStorage.setItem('accessToken', accessToken); // tokenType 없이 accessToken만 저장
+            localStorage.setItem('accesstoken', accessToken); // tokenType 없이 accesstoken만 저장
         }
 
         return response; // 필요한 경우 호출하는 쪽에서 추가 처리
