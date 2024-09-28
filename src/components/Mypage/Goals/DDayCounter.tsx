@@ -41,7 +41,8 @@ const DDayCounter: React.FC = () => {
   return (
     <div className={cn(
         "bg-white p-4 rounded shadow text-left mb-4",
-        "flex flex-row items-center justify-left gap-4"
+        "flex flex-row items-center justify-left gap-4",
+        "w-40 h-14"
     )}
     >
         <h1 className="text-2xl font-bold text-blue-500">
