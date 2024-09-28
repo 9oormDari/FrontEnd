@@ -19,14 +19,14 @@ export default function NavLink({ href, label }: NavLinkProps) {
     };
 
     return (
-        <button
+        <div
             onClick={handleClick}
             className={cn(
-                'text-base md:text-2xl transition md:p-4',
+                'text-xl md:text-2xl p-1 md:p-4',
                 `${isActive ? 'text-black font-bold' : 'text-gray-400 hover:text-gray-600'}`
             )}
         >
             {label}
-        </button>
+        </div>
     );
 }

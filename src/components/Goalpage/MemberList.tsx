@@ -5,13 +5,14 @@ import { useState, useEffect } from 'react';
 interface Member {
     id: string;
     username: string;
+    profileUrl: string;
 }
 
 export default function MemberList() {
     const [members, setMembers] = useState<Member[]>([
-        { id: '1', username: '김' },
-        { id: '2', username: '박' },
-        { id: '3', username: '최' },
+        { id: '1', username: '김', profileUrl: '' },
+        { id: '2', username: '박', profileUrl: '' },
+        { id: '3', username: '최', profileUrl: '' },
     ]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -52,6 +53,7 @@ export default function MemberList() {
                         key={member.id}
                         id={member.id}
                         name={member.username}
+                        profileUrl={member.profileUrl}
                     />
                 ))}
             </div>

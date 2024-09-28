@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+import { API } from '../../../lib/api';
 import NoImage from '../../../assets/GoalPage/NoImage.png';
 import cn from '../../../lib/cn';
-import { API } from '../../../lib/api';
 
 interface ShowImageModalProps {
     memberId: string; // 멤버 ID
@@ -81,16 +82,16 @@ export default function ShowImageModal({
                 </h1>
                 <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {displayImages.map((image, index) => (
+                        <div 
+                        key={`${image.id}-${index}`}
+                        className="h-32 md:h-48 bg-gray-200 flex justify-center items-center rounded"
+                        >
                         <img
-                            key={`${image.id}-${index}`} // 고유한 key 설정
-                            src={image.url} // 이미지 URL 설정
-                            alt={image.alt} // 대체 텍스트 설정
-                            className={cn(
-                                'flex justify-center items-center w-[80vw] md:w-[80vw]',
-
-                                'h-32 md:h-48 object-cover rounded' // 이미지 스타일링
-                            )}
+                            src={image.url} 
+                            alt={image.alt}
+                            className="w-full h-full object-contain"
                         />
+                        </div>
                     ))}
                 </div>
                 <div className="flex items-center justify-center p-2">
