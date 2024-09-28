@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+import { API } from '../../../lib/api';
 import NoImage from '../../../assets/GoalPage/NoImage.png';
 import cn from '../../../lib/cn';
-import { API } from '../../../lib/api';
 
 interface ShowImageModalProps {
     memberId: string; // 멤버 ID
@@ -22,7 +23,7 @@ export default function ShowImageModal({
 }: ShowImageModalProps) {
     // 백엔드에서 가져온 이미지들을 저장할 상태
     const [images, setImages] = useState<ImageData[]>([]);
-
+    
     // 백엔드에서 이미지 데이터를 가져오는 함수
     useEffect(() => {
         const fetchMemberImages = async () => {

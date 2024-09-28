@@ -27,11 +27,16 @@ export default function GoormScreen() {
                     setStage(response.data.currentStep);
                     console.log('현재 스테이지:', response.data.currentStep);
                 } else {
-                    console.error('응답 상태가 OK가 아니거나 데이터가 없습니다.');
+                    console.error(
+                        '응답 상태가 OK가 아니거나 데이터가 없습니다.'
+                    );
                     setStage(0);
                 }
             } catch (error) {
-                console.error('내 정보를 불러오는 중 오류가 발생했습니다:', error);
+                console.error(
+                    '내 정보를 불러오는 중 오류가 발생했습니다:',
+                    error
+                );
                 setStage(0);
             }
         };
