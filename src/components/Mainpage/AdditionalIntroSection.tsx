@@ -6,6 +6,8 @@ import Camera from '../../assets/MainPage/Icons/Camera.svg';
 import Friends from '../../assets/MainPage/Icons/Friends.svg';
 import EnjoyFace from '../../assets/MainPage/Icons/EnjoyFace.svg';
 import Trophy from '../../assets/MainPage/Icons/Trophy.svg';
+import StartButton from '../StartButton';
+import cloudImage from '../../assets/cloud.png';
 
 export default function AdditionalIntroSection() {
     const items = [
@@ -69,6 +71,10 @@ export default function AdditionalIntroSection() {
                         <Item key={index} text={item.text} image={item.image} />
                     ))}
                 </div>
+            </div>
+            <div className="mt-24 mb-24 sm:mt-60 sm:mb-40 text-white">
+                <StartButton isLoggedIn={false} />{' '}
+                {/* 로그인 상태에 따라 prop 변경 */}
             </div>
         </section>
     );

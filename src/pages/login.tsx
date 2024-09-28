@@ -1,6 +1,7 @@
 import { API } from '../lib/api';
 import Pending from '../components/Pending/Loading.tsx'; // Pending 컴포넌트 추가
 import cn from '../lib/cn.ts';
+import { useNavigate } from 'react-router-dom'; // useNavigate 훅 임포트
 import { useState } from 'react';
 
 export default function Login() {
@@ -8,6 +9,7 @@ export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isPending, setIsPending] = useState(false); // 로딩 상태 관리
+    const navigate = useNavigate(); // useNavigate 훅 사용
 
     const handleLogin = async () => {
         setIsPending(true); // 로그인 요청 시 로딩 상태로 전환
@@ -15,12 +17,13 @@ export default function Login() {
             // 로그인 요청
             await API.User.login(username, password);
             alert('로그인 성공!');
+
+            // 로그인 성공 후 바로 페이지 이동, setIsPending(false)를 호출하지 않음
             window.location.href = '/'; // 로그인 성공 시 메인 페이지로 이동
         } catch (error) {
             console.error('로그인 실패:', error);
             alert('로그인에 실패했습니다.');
-        } finally {
-            setIsPending(false); // 요청 완료 후 로딩 상태 해제
+            setIsPending(false); // 요청 실패 시에만 로딩 상태 해제
         }
     };
 
@@ -31,7 +34,7 @@ export default function Login() {
             ) : (
                 <div
                     className={cn(
-                        'flex items-center justify-center min-h-[500px] pt-[50px]'
+                        'flex items-center justify-center min-h-[500px] pt-[100px]'
                     )}
                 >
                     <div
@@ -92,9 +95,7 @@ export default function Login() {
                                     'w-[300px] md:w-[500px] h-[70px] bg-[#575757] text-white font-bold rounded',
                                     'hover:bg-[#474747] focus:outline-none focus:ring-2 focus:ring-[#575757]'
                                 )}
-                                onClick={() =>
-                                    (window.location.href = '/register')
-                                } // 회원가입 버튼 클릭 시 window.location 사용
+                                onClick={() => navigate('/register')} // 회원가입 버튼 클릭 시 useNavigate 사용
                             >
                                 회원가입
                             </button>

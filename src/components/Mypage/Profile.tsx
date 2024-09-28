@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import { API } from '../../lib/api'; // 적절한 경로로 __User import
+import { API } from '../../lib/api'; // 적절한 경로로 API import
+import Pending from '../Pending/Loading.tsx'; // Pending 컴포넌트 추가
 
 export default function Profile() {
     const [userInfo, setUserInfo] = useState<{
@@ -11,6 +12,12 @@ export default function Profile() {
         profileImageUrl: null,
     });
 
+    const [loading, setLoading] = useState(true); // 로딩 상태 관리
+
+    // 사진 영역의 크기와 border-radius 설정
+    const imageSize = 150; // 사진 영역의 크기 (너비와 높이)
+    const borderRadius = '50%'; // 사진을 원형으로 만들기 위한 border-radius
+
     // 화면이 렌더될 때 getMyInfo API 호출
     useEffect(() => {
         const fetchUserInfo = async () => {
@@ -20,10 +27,12 @@ export default function Profile() {
                     nickname: response.nickname,
                     profileImageUrl: response.profileUrl,
                 });
-
                 console.log('사용자 정보:', response);
             } catch (error) {
                 console.error('사용자 정보를 가져오는 데 실패했습니다.', error);
+            } finally {
+                // 0.2초 후 로딩 상태 해제
+                setTimeout(() => setLoading(false), 200);
             }
         };
 
@@ -33,8 +42,21 @@ export default function Profile() {
     return (
         <div className="w-full max-w-lg flex flex-col items-center justify-start p-8 pt-0">
             {/* 사진 영역 */}
-            <div className="w-[150px] h-[150px] bg-gray-300 rounded-full mb-4 border-[5px] border-[#5A82F1]">
-                {userInfo.profileImageUrl ? (
+            <div
+                className="bg-gray-300 mb-4 border-[5px] border-[#5A82F1]"
+                style={{
+                    width: `${imageSize}px`,
+                    height: `${imageSize}px`,
+                    borderRadius: borderRadius, // 원형 모양
+                }}
+            >
+                {loading ? (
+                    <Pending
+                        height={140}
+                        borderRadius={borderRadius}
+                        imageSize="50%"
+                    />
+                ) : userInfo.profileImageUrl ? (
                     <img
                         src={userInfo.profileImageUrl}
                         alt="프로필 이미지"
