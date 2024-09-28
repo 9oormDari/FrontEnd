@@ -202,8 +202,8 @@ const Calendar: React.FC = () => {
                         <div
                             key={index}
                             className={cn(
-                                'relative flex items-center justify-center text-xs md:text-base',
-                                'h-8 sm:h-10 md:h-14  w-8 sm:w-10 md:w-14',
+                                'relative flex items-center justify-center text-lg md:text-xl', // 텍스트 크기 더 증가
+                                'h-[40px] w-[40px] sm:min-h-[50px] sm:min-w-[50px] md:min-h-[70px] md:min-w-[70px]', // 최소 높이/너비 추가로 확실히 크기 증가
                                 'text-center text-black rounded-full transition-colors',
                                 `${day === null ? 'opacity-50' : 'cursor-pointer '}`,
                                 `${day ? getHeatmapColor(achieved || 0) : ''}`
