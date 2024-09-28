@@ -6,8 +6,8 @@ import GuideOne from '../assets/guide/guide-1.png';
 import GuideThree from '../assets/guide/guide-3.png';
 import GuideTwo from '../assets/guide/guide-2.png';
 import Pending from '../components/Pending/Loading.tsx'; // Pending 컴포넌트 추가
-import cn from '../lib/cn';
 import StartButton from '../components/StartButton';
+import cn from '../lib/cn';
 
 export default function Guide() {
     const [isPending, setIsPending] = useState(true);
@@ -71,7 +71,7 @@ export default function Guide() {
 
             {/* 부모 요소에 flex와 justify-center 추가 */}
             <div className="mt-24 mb-24 sm:mt-60 sm:mb-40 text-white flex justify-center">
-                <StartButton isLoggedIn={false} />{' '}
+                <StartButton />{' '}
                 {/* 로그인 상태에 따라 prop 변경 */}
             </div>
         </div>
