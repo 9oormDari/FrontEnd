@@ -7,7 +7,6 @@ interface Member {
     username: string;
 }
 
-
 export default function MemberList() {
     const [members, setMembers] = useState<Member[]>([
         { id: '1', username: '김' },
